@@ -24,37 +24,44 @@ class NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Enie store'),
-        backgroundColor: Colors.greenAccent,
-      ),
-      body: Center(
-        child: widgetOptions.elementAt(selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          // ignore: deprecated_member_use
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
-          BottomNavigationBarItem(
-              // ignore: deprecated_member_use
-              icon: Icon(Icons.shopping_bag),
-              title: Text('Shop')),
-          BottomNavigationBarItem(
-              // ignore: deprecated_member_use
-              icon: LineIcon(LineIcons.shoppingCart),
-              title: Text('Cart')),
+    return WillPopScope(
+      onWillPop: () {
+        return new Future(() => false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text('Enie store'),
+          backgroundColor: Colors.greenAccent,
+        ),
+        body: Center(
+          child: widgetOptions.elementAt(selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            // ignore: deprecated_member_use
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home), title: Text('Home')),
+            BottomNavigationBarItem(
+                // ignore: deprecated_member_use
+                icon: Icon(Icons.shopping_bag),
+                title: Text('Shop')),
+            BottomNavigationBarItem(
+                // ignore: deprecated_member_use
+                icon: LineIcon(LineIcons.shoppingCart),
+                title: Text('Cart')),
 
-          BottomNavigationBarItem(
-              // ignore: deprecated_member_use
-              icon: LineIcon(LineIcons.userCircle),
-              title: Text('Profile')),
-        ],
-        currentIndex: selectedIndex,
-        unselectedItemColor: Colors.black,
-        fixedColor: Colors.deepPurple,
-        onTap: onItemTapped,
-        backgroundColor: Colors.purpleAccent,
+            BottomNavigationBarItem(
+                // ignore: deprecated_member_use
+                icon: LineIcon(LineIcons.userCircle),
+                title: Text('Profile')),
+          ],
+          currentIndex: selectedIndex,
+          unselectedItemColor: Colors.black,
+          fixedColor: Colors.deepPurple,
+          onTap: onItemTapped,
+          backgroundColor: Colors.purpleAccent,
+        ),
       ),
     );
   }
