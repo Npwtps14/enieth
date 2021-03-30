@@ -98,6 +98,7 @@ class _RegisterState extends State<Register> {
         return new Future(() => false);
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false, //remove warnning pixel
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text('Enie store'),
@@ -110,15 +111,15 @@ class _RegisterState extends State<Register> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 15.0),
+                SizedBox(height: 20.0),
                 label("Email"),
-                SizedBox(height: 5.0),
+                SizedBox(height: 10.0),
                 usernameField,
-                SizedBox(height: 15.0),
+                SizedBox(height: 20.0),
                 label("Password"),
                 SizedBox(height: 10.0),
                 passwordField,
-                SizedBox(height: 15.0),
+                SizedBox(height: 20.0),
                 label("Confirm Password"),
                 SizedBox(height: 10.0),
                 confirmPassword,

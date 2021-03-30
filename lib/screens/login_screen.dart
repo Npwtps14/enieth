@@ -117,7 +117,7 @@ class _LoginState extends State<Login> {
             User user = response['user'];
             Provider.of<UserProvider>(context, listen: false).setUser(user);
             // Navigator.pushReplacementNamed(context, '/dashboard');
-             gotoInApp(context);
+            gotoInApp(context);
           } else {
             Flushbar(
               title: "Failed Login",
@@ -133,13 +133,14 @@ class _LoginState extends State<Login> {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false, //remove warnning pixel
         body: Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.all(40),
           child: Form(
             key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:  [
+              children: [
                 SizedBox(height: 20.0),
                 label("Phone Number"),
                 SizedBox(height: 10.0),
