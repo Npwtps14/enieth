@@ -6,6 +6,7 @@ import 'package:enie_production/widgets/login_btn.dart';
 import 'package:enie_production/widgets/validators.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 // class LoginScreen extends StatelessWidget {
@@ -56,6 +57,9 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     AuthProvider auth = Provider.of<AuthProvider>(context);
 
     final usernameField = TextFormField(
@@ -141,6 +145,17 @@ class _LoginState extends State<Login> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 10,
+                  width: 10,
+                ),
+                Center(
+                  child: Image.network(
+                    'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/logo%2Fenie_logo.png?alt=media&token=ab317673-0576-4557-8f1f-bbf0b8313e56',
+                    width: 200,
+                    height: 105,
+                    fit: BoxFit.fitHeight),
+                ),      
                 SizedBox(height: 20.0),
                 label("Phone Number"),
                 SizedBox(height: 10.0),

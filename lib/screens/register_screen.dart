@@ -6,6 +6,7 @@ import 'package:enie_production/widgets/login_btn.dart';
 import 'package:enie_production/widgets/validators.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
 import 'nav_bar.dart';
@@ -28,7 +29,7 @@ class _RegisterState extends State<Register> {
       autofocus: false,
       validator: validateEmail,
       onSaved: (value) => _username = value,
-      decoration: buildInputDecoration("Confirm password", Icons.email),
+      decoration: buildInputDecoration("Confirm password", Icons.phone),
     );
 
     final passwordField = TextFormField(
@@ -101,8 +102,8 @@ class _RegisterState extends State<Register> {
         resizeToAvoidBottomInset: false, //remove warnning pixel
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('Enie store'),
-          backgroundColor: Colors.greenAccent,
+          title: Text('สมัครสมาชิก'),
+          backgroundColor: HexColor('#36803a'),
         ),
         body: Container(
           padding: EdgeInsets.all(40.0),
@@ -112,7 +113,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 20.0),
-                label("Email"),
+                label("Phone Number"),
                 SizedBox(height: 10.0),
                 usernameField,
                 SizedBox(height: 20.0),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 MaterialButton longButtons(String title, Function fun,
-    {Color color: const Color(0xfff063057), Color textColor: Colors.white}) {
+    {color: const  Color(0xFF2E7D32), Color textColor: Colors.white}) {
   return MaterialButton(
     onPressed: fun,
     textColor: textColor,
@@ -16,7 +17,7 @@ MaterialButton longButtons(String title, Function fun,
     height: 45,
     minWidth: 600,
     shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10))),
+        borderRadius: BorderRadius.all(Radius.circular(20))),
   );
 }
 
@@ -24,9 +25,9 @@ label(String title) => Text(title);
 
 InputDecoration buildInputDecoration(String hintText, IconData icon) {
   return InputDecoration(
-    prefixIcon: Icon(icon, color: Color.fromRGBO(50, 62, 72, 1.0)),
+    prefixIcon: Icon(icon, color: HexColor('#36803a')),
     // hintText: hintText,
     contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
   );
 }
