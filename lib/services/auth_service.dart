@@ -42,7 +42,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
 
     Response response = await post(
-      AppUrl.login,
+       Uri.https("api","path"),
       body: json.encode(loginData),
       headers: {'Content-Type': 'application/json'},
     );
@@ -80,7 +80,7 @@ class AuthProvider with ChangeNotifier {
         'password_confirmation': passwordConfirmation
       }
     };
-    return await post(AppUrl.register,
+    return await post(Uri.https("api","path"),
         body: json.encode(registrationData),
         headers: {'Content-Type': 'application/json'})
         .then(onValue)

@@ -7,14 +7,14 @@ class ImgSliderService {
   static var client = http.Client();
 
    static Future<List<ImgSlider>> fetchSlider() async {
-    var response = await client.get(
-        'https://mf-salon-api.herokuapp.com/img-slider');
-    if (response.statusCode == 200) {
-      var jsonString = response.body;
-      return sliderFromJson(jsonString);
-    } else {
+    // var response = await client.get(
+    //     'https://mf-salon-api.herokuapp.com/img-slider');
+    // if (response.statusCode == 200) {
+    //   var jsonString = response.body;
+    //   return sliderFromJson(jsonString);
+    // } else {
       //show error message   
       return null;
-    }
+    // }
   }
 }

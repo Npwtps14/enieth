@@ -3,8 +3,11 @@ import 'package:enie_production/screens/home_screen.dart';
 import 'package:enie_production/screens/products_screen.dart';
 import 'package:enie_production/screens/user_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+
+import 'category_screen.dart';
 
 class NavBar extends StatefulWidget {
   NavBar({Key key}) : super(key: key);
@@ -17,7 +20,7 @@ class NavBarState extends State<NavBar> {
   int selectedIndex = 0;
   final widgetOptions = [
     new HomePage(),
-    new ProductsPage(),
+    new CategoryPage(),
     new CartPage(),
     new UsersPage()
   ];
@@ -29,11 +32,11 @@ class NavBarState extends State<NavBar> {
         return new Future(() => false);
       },
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text('Enie store'),
-          backgroundColor: Colors.greenAccent,
-        ),
+        // appBar: AppBar(
+        //   automaticallyImplyLeading: false,
+        //   title: Text('Enie store'),
+        //   backgroundColor: HexColor('#36803a'),
+        // ),
         body: Center(
           child: widgetOptions.elementAt(selectedIndex),
         ),

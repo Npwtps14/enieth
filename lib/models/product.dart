@@ -41,6 +41,7 @@ class Product {
   final int productOwnerId;
   final int productSeriesId;
   var isFavorite = false.obs;
+  
 
   Product({
     this.id,

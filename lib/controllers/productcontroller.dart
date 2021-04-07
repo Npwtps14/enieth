@@ -1,4 +1,5 @@
 import 'package:enie_production/models/product.dart';
+import 'package:enie_production/screens/products_screen.dart';
 import 'package:enie_production/services/products_service.dart';
 import 'package:get/state_manager.dart';
 
@@ -16,7 +17,7 @@ class ProductController extends GetxController {
   void fetchProducts() async {
     try {
       isLoading(true);
-      var products = await ProductsService.fetchProducts();
+      var products = await ProductsPageState.fetchProducts();
       if (products != null) {
         productList.value = products;
       }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -8,10 +9,17 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Center(
-        child: new Text("CartPage screen"),
-      ),
-    );
+    return WillPopScope(
+        onWillPop: () {
+          return new Future(() => true);
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false, //remove warnning pixel
+          appBar: AppBar(
+            automaticallyImplyLeading: true,
+            title: Text('ตระกร้า'),
+            backgroundColor: HexColor('#36803a'),
+          ),
+        ));
   }
 }
