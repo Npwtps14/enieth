@@ -27,13 +27,10 @@ class ProductsPage extends StatefulWidget {
   @override
   ProductsPageState createState() => new ProductsPageState();
     final String cate;
-    final String cateId 
-      ;
-    ProductsPage({Key key, this.cate = "test",  this.cateId ,  }) : super(key: key);
+    final String cateId = "";
+    ProductsPage({Key key, this.cate = "test", String cateId ,  }) : super(key: key);
   }
   
- 
-
 class ProductsPageState extends State<ProductsPage> {
   @override
   final ProductController productController = Get.put(ProductController());

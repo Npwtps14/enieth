@@ -1,11 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 
-// List<Product> productFromJson(String str) =>
-//     List<Product>.from(json.decode(str).json((x) => Product.fromJSON(x)));
 
-// String productToJson(List<Product> data) =>
-//     json.encode(List<dynamic>.from(data.map((x) => x.toJSON())));
 List<Product> productFromJson(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
@@ -105,39 +101,4 @@ class Product {
       productSeriesId: json["product_series_id"] as int,
     );
   }
-
-  // Map<String, dynamic> toJSON() => {
-  //       "id": id,
-  //       "pd_best": pdBest,
-  //       "pd_capacity": pdCapacity == null ? null : pdCapacity,
-  //       "pd_code": pdCode == null ? null : pdCode,
-  //       "pd_com": pdCom,
-  //       "pd_cost": pdCost,
-  //       "pd_detail": pdDetail == null ? null : pdDetail,
-  //       "pd_flash": pdFlash,
-  //       "pd_hot": pdHot,
-  //       "pd_how_to_use": pdHowToUse == null ? null : pdHowToUse,
-  //       "pd_main_image": pdMainImage,
-  //       "pd_mt_status": pdMtStatus,
-  //       "pd_name_en": pdNameEn == null ? null : pdNameEn,
-  //       "pd_name_th": pdNameTh,
-  //       "pd_price_sales": pdPriceSales,
-  //       "pd_price_salon": pdPriceSalon,
-  //       "pd_price_web": pdPriceWeb,
-  //       "pd_qty": pdQty,
-  //       "pd_recommend": pdRecommend,
-  //       "pd_seq": pdSeq == null ? null : pdSeq,
-  //       "pd_show_sales": pdShowSales,
-  //       "pd_show_salon": pdShowSalon,
-  //       "pd_show_web": pdShowWeb,
-  //       "pd_sku": pdSku == null ? null : pdSku,
-  //       "pd_status": pdStatus,
-  //       "pd_unit": pdUnit,
-  //       "pd_vat_status": pdVatStatus,
-  //       "product_brand_id": productBrandId,
-  //       "product_category_id": productCategoryId,
-  //       "product_group_id": productGroupId,
-  //       "product_owner_id": productOwnerId,
-  //       "product_series_id": productSeriesId,
-  //     };
 }
