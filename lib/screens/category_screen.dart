@@ -17,7 +17,7 @@ class _CategoryPageState extends State<CategoryPage> {
   final String textCate3 = 'บำรุง/ทรีทเม้น';
 
   //ค่า categoryId จาก api
-  final categoryID1 = 1;
+  final String categoryID1 = '1';
   final categoryID4 = 4;
   final categoryID5 = 5;
   final categoryID6 = 1;
@@ -57,12 +57,18 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
-                    cate: textCate.toString(),
-                    cateId:categoryID1.toString(),
-                  ),
-                );
+                    builder: (BuildContext contex) => ProductsPage(
+                          cate: textCate,
+                          cateId: categoryID1,
+                        ));
+                // var homeRounte2 = new MaterialPageRoute(
+                //   builder: (BuildContext contex) => GetCateId(
+                //     cate: textCate.toString(),
+                //     cateId: categoryID1.toString(),
+                //   ),
+                // );
                 Navigator.of(context).push(homeRounte);
+                // Navigator.of(context).push(homeRounte2);
               },
             ),
             ListTile(
