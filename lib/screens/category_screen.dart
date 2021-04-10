@@ -1,9 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:enie_production/models/product.dart';
 import 'package:enie_production/screens/login_screen.dart';
+import 'package:enie_production/screens/products_screen.dart';
 import 'package:enie_production/screens/products_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+
+import 'products_screen.dart';
+import 'products_screen.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -55,20 +60,14 @@ class _CategoryPageState extends State<CategoryPage> {
                   'https://salon.fantasy.co.th/images/products/500/20201217151121-3ADdArjHmO.png'),
               title: Text('น้ำยายืด/ดัด'),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
+             onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                    builder: (BuildContext contex) => ProductsPage(
-                          cate: textCate,
-                          cateId: categoryID1,
-                        ));
-                // var homeRounte2 = new MaterialPageRoute(
-                //   builder: (BuildContext contex) => GetCateId(
-                //     cate: textCate.toString(),
-                //     cateId: categoryID1.toString(),
-                //   ),
-                // );
+                  builder: (BuildContext contex) => ProductsPage(
+                    cate: textCate,
+                    cateId: categoryID1
+                  ),
+                );
                 Navigator.of(context).push(homeRounte);
-                // Navigator.of(context).push(homeRounte2);
               },
             ),
             ListTile(
@@ -79,14 +78,14 @@ class _CategoryPageState extends State<CategoryPage> {
                   'https://salon.fantasy.co.th/images/products/500/20200604141350-Pmjg5e99Qe.png'),
               title: Text('เคมี'),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
-                    cate: textCate2.toString(),
-                  ),
-                );
-                Navigator.of(context).push(homeRounte);
-              },
+              // onTap: () {
+              //   var homeRounte = new MaterialPageRoute(
+              //     builder: (BuildContext contex) => ProductsPage(
+              //       cate: textCate2.toString(),
+              //     ),
+              //   );
+              //   Navigator.of(context).push(homeRounte);
+              // },
             ),
             ListTile(
               contentPadding: EdgeInsets.all(10),
@@ -96,18 +95,20 @@ class _CategoryPageState extends State<CategoryPage> {
                   'https://salon.fantasy.co.th/images/products/500/20201223154409-1LNthwRY0M.png'),
               title: Text('บำรุง/ทรีทเม้น'),
               trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
-                    cate: textCate3.toString(),
-                  ),
-                );
-                Navigator.of(context).push(homeRounte);
-              },
+              // onTap: () {
+              //   var homeRounte = new MaterialPageRoute(
+              //     builder: (BuildContext contex) => ProductsPage(
+              //       cate: textCate3.toString(),
+              //     ),
+              //   );
+              //   Navigator.of(context).push(homeRounte);
+              // },
             ),
           ],
         )),
       ),
     );
   }
+
+  ProductsPageState({String cate, String cateId}) {}
 }
