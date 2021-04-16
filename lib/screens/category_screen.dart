@@ -1,13 +1,29 @@
+import 'package:enie_production/screens/category/category_10.dart';
+import 'package:enie_production/screens/category/category_11.dart';
+import 'package:enie_production/screens/category/category_14.dart';
+import 'package:enie_production/screens/category/category_19.dart';
+import 'package:enie_production/screens/category/category_20.dart';
+import 'package:enie_production/screens/category/category_21.dart';
+import 'package:enie_production/screens/category/category_22.dart';
+import 'package:enie_production/screens/category/category_24.dart';
+import 'package:enie_production/screens/category/category_25.dart';
+import 'package:enie_production/screens/category/category_26.dart';
+import 'package:enie_production/screens/category/category_27.dart';
+import 'package:enie_production/screens/category/category_28.dart';
+import 'package:enie_production/screens/category/category_29.dart';
+import 'package:enie_production/screens/category/category_32.dart';
 import 'package:enie_production/screens/category/category_5.dart';
 import 'package:enie_production/screens/category/category_1.dart';
 import 'package:enie_production/screens/category/category_1.dart';
+import 'package:enie_production/screens/category/category_8.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import 'category/category_1.dart';
-import 'category/category_1.dart';
 import 'category/category_4.dart';
+import 'category/category_6.dart';
+import 'category/category_7.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -129,7 +145,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate8(
                     cate: textCate4,
                   ),
                 );
@@ -146,7 +162,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate7(
                     cate: textCate5,
                   ),
                 );
@@ -163,7 +179,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate27(
                     cate: textCate6,
                   ),
                 );
@@ -180,7 +196,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate28(
                     cate: textCate7,
                   ),
                 );
@@ -197,7 +213,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate32(
                     cate: textCate8,
                   ),
                 );
@@ -215,7 +231,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate10(
                     cate: textCate9,
                   ),
                 );
@@ -232,7 +248,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate11(
                     cate: textCate10,
                   ),
                 );
@@ -250,7 +266,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate14(
                     cate: textCate11,
                   ),
                 );
@@ -267,7 +283,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate19(
                     cate: textCate12,
                   ),
                 );
@@ -284,7 +300,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate20(
                     cate: textCate13,
                   ),
                 );
@@ -301,7 +317,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate24(
                     cate: textCate14,
                   ),
                 );
@@ -318,7 +334,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate21(
                     cate: textCate15,
                   ),
                 );
@@ -335,7 +351,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate22(
                     cate: textCate16,
                   ),
                 );
@@ -352,7 +368,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate25(
                     cate: textCate17,
                   ),
                 );
@@ -369,7 +385,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate29(
                     cate: textCate18,
                   ),
                 );
@@ -386,7 +402,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => ProductsPage(
+                  builder: (BuildContext contex) => Cate26(
                     cate: textCate19,
                   ),
                 );
