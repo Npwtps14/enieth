@@ -1,9 +1,9 @@
 import 'package:enie_production/models/product.dart';
-import 'package:enie_production/screens/products_screen.dart';
-import 'package:enie_production/screens/products_screen.dart';
+import 'package:enie_production/screens/category/category_1.dart';
+import 'package:enie_production/screens/category/category_1.dart';
 import 'package:get/state_manager.dart';
 
-class ProductController extends GetxController {
+class CateId32Controller extends GetxController {
   var isLoading = true.obs;
   // ignore: deprecated_member_use
   var productList = List<Product>().obs;
@@ -11,14 +11,14 @@ class ProductController extends GetxController {
 
   @override
   void onInit() {
-    fetchProducts();
+    fetchCate32();
     super.onInit();
   }
 
-  void fetchProducts() async {
+  void fetchCate32() async {
     try {
       isLoading(true);
-      var products = await ProductsPageState.fetchProducts();
+      var products = await Cate32State.fetchCate32();
       if (products != null) {
         productList.value = products;
       }

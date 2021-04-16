@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:enie_production/screens/login_screen.dart';
-import 'package:enie_production/screens/products_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:enie_production/screens/cart_screen.dart';
 import 'package:enie_production/screens/home_screen.dart';
-import 'package:enie_production/screens/products_screen.dart';
+import 'package:enie_production/screens/category/category_1.dart';
 import 'package:enie_production/screens/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
