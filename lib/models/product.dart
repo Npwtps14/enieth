@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 
-
 List<Product> productFromJson(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
@@ -37,7 +36,8 @@ class Product {
   final int productOwnerId;
   final int productSeriesId;
   var isFavorite = false.obs;
-  
+  var isAddCart = false.obs;
+  int counter = 0;
 
   Product({
     this.id,

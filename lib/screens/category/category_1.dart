@@ -59,13 +59,15 @@ class Cate1State extends State<Cate1> {
           return new Future(() => true);
         },
         child: Scaffold(
+          backgroundColor: HexColor('#e0e0e0'),
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,
             title: Text('สินค้า',style: GoogleFonts.kanit() ),
             backgroundColor: HexColor('#36803a'),
           ),
-          body: Column(
+          body:
+           Column(
             children: [
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -90,7 +92,7 @@ class Cate1State extends State<Cate1> {
                 ),
               ),
               Expanded(
-                child: Obx(() {
+                child:  Obx(() {
                   if (productController.isLoading.value)
                     return Center(child: CircularProgressIndicator());
                   else

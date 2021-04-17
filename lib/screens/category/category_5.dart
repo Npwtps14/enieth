@@ -13,6 +13,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 class Cate5 extends StatefulWidget {
   final cate;
   final cateId;
@@ -29,8 +30,6 @@ class Cate5State extends State<Cate5> {
 
   static get cateId => Cate5().cateId;
 
-   
-
   static Future<List<Product>> fetchCate5() async {
     @override
     var dio = Dio();
@@ -42,7 +41,7 @@ class Cate5State extends State<Cate5> {
     var response = await dio
         // ignore: unnecessary_brace_in_string_interps
         // 'https://api.enie.co.th/api/products'
-        
+
         .get('https://api.enie.co.th/api/products?categoryID=$id');
     if (response.statusCode == 200) {
       print('value ${id}');
@@ -61,10 +60,12 @@ class Cate5State extends State<Cate5> {
           return new Future(() => true);
         },
         child: Scaffold(
+          backgroundColor: HexColor('#e0e0e0'),
+
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            title: Text('สินค้า',style: GoogleFonts.kanit() ),
+            title: Text('สินค้า', style: GoogleFonts.kanit()),
             backgroundColor: HexColor('#36803a'),
           ),
           body: Column(

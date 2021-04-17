@@ -62,6 +62,8 @@ class Cate32State extends State<Cate32> {
           return new Future(() => true);
         },
         child: Scaffold(
+          backgroundColor: HexColor('#e0e0e0'),
+
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,
@@ -103,7 +105,7 @@ class Cate32State extends State<Cate32> {
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                       itemBuilder: (context, index) {
-                        return ProductTile(
+                        return  ProductTile(
                             productController.productList[index]);
                       },
                       staggeredTileBuilder: (index) => StaggeredTile.fit(1),

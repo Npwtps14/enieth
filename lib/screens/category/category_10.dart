@@ -60,6 +60,8 @@ class Cate10State extends State<Cate10> {
           return new Future(() => true);
         },
         child: Scaffold(
+                    backgroundColor: HexColor('#e0e0e0'),
+
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,

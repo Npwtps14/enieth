@@ -62,6 +62,8 @@ class Cate22State extends State<Cate22> {
           return new Future(() => true);
         },
         child: Scaffold(
+                    backgroundColor: HexColor('#e0e0e0'),
+
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,
