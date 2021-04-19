@@ -11,61 +11,35 @@ class ProductTile extends StatelessWidget {
   ProductTile(this.product);
   final itemCount = 1;
   int count = 0;
- 
 
   @override
   Widget build(BuildContext context) {
-    final addCartBtn = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.remove_circle,
-            color: Colors.red,
-          ),
-          onPressed: () {},
-        ),
-        Text('$itemCount'),
-        IconButton(
-          icon: Icon(
-            Icons.add_box,
-            color: Colors.green,
-          ),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.add_shopping_cart,
-            color: Colors.blue,
-          ),
-          onPressed: () {},
-        ),
-      ],
-    );
+    
     return GestureDetector(
       onTap: () {
-                
-                var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) => GetItem(
-                    itemId: product.id,
-                    itemName:product.pdNameTh,
-                    
-                  ),
-                );
-                Navigator.of(context).push(homeRounte);
-              },
+        var itemDetail = new MaterialPageRoute(
+          builder: (BuildContext contex) => GetItem(
+              itemId: product.id,
+              itemName: product.pdNameTh,
+              itemDetail: product.pdDetail,
+              itemImg: product.pdMainImage,
+              itemPrice: product.pdPriceSalon,
+              itemCapacity: product.pdCapacity,
+              itemHowToUse:product.pdHowToUse)
+        );
+        Navigator.of(context).push(itemDetail);
+      },
       child: Card(
         elevation: 2,
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
-                  // if (product.pdMainImage == null)
                   Container(
-                    height: 190,
+                    height: 160,
                     width: double.infinity,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(

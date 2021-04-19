@@ -43,7 +43,7 @@ class Cate1State extends State<Cate1> {
         
         .get('https://api.enie.co.th/api/products?categoryID=$id');
     if (response.statusCode == 200) {
-      print('value ${id}');
+      print('value ${response}');
       return (response.data as List).map((x) => Product.fromJson(x)).toList();
     } else {
       //show error message
@@ -99,8 +99,8 @@ class Cate1State extends State<Cate1> {
                     return StaggeredGridView.countBuilder(
                       crossAxisCount: 2,
                       itemCount: productController.productList.length,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
                       itemBuilder: (context, index) {
                         return ProductTile(
                             productController.productList[index]);

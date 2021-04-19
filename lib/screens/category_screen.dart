@@ -53,20 +53,6 @@ class _CategoryPageState extends State<CategoryPage> {
   final String textCate19 = 'กรรไกร (Scissors)';
   final String textCate20 = 'รถเข็น';
 
-  //ค่า categoryId จาก api
-  // final String categoryID1 = '1';
-  // final categoryID4 = 4;
-  // final categoryID5 = 5;
-  // final categoryID6 = 1;
-  // final categoryID7 = 1;
-  // final categoryID8 = 1;
-  // final categoryID10 = 1;
-  // final categoryID11 = 1;
-  // final categoryID14 = 1;
-  // final categoryID19 = 1;
-  // final categoryID20 = 1;
-  // final categoryID21 = 1;
-  // final categoryID22 = 1;
 
   @override
   Widget build(BuildContext context) {

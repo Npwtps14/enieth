@@ -1,23 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
+import 'cart_screen.dart';
 
 class GetItem extends StatefulWidget {
-  final itemName;
   final int itemId;
-  const GetItem({int this.itemId, String this.itemName});
+  final itemName;
+  final itemDetail;
+  final itemImg;
+  final itemPrice;
+  final itemCapacity;
+  final itemHowToUse;
+
+  const GetItem(
+      {int this.itemId,
+      String this.itemName,
+      this.itemDetail,
+      this.itemImg,
+      this.itemPrice,
+      this.itemCapacity,
+      this.itemHowToUse});
   @override
   ProductDetailPageState createState() => new ProductDetailPageState();
 }
 
-// class ProductDetailPage extends State<GetItem> {
-//   @override
-//   ProductDetailPageState createState() => ProductDetailPageState();
-
-// }
 class ProductDetailPageState extends State<GetItem> {
   @override
   Widget build(BuildContext context) {
+    final addCartBtn = Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.remove_circle,
+            color: Colors.red,
+          ),
+          onPressed: () {},
+        ),
+        Text('จำนวน  ' + '1',style: GoogleFonts.kanit(
+          fontWeight: FontWeight.bold
+        ),),
+        IconButton(
+          icon: Icon(
+            Icons.add_box,
+            color: Colors.green,
+          ),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.add_shopping_cart,
+            color: Colors.blue,
+          ),
+          onPressed: () {},
+        ),
+      ],
+    );
     return WillPopScope(
         onWillPop: () {
           return new Future(() => true);
@@ -26,8 +67,146 @@ class ProductDetailPageState extends State<GetItem> {
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            title: Text('รายละเอียดสินค้า'),
+            title: Text(
+              'รายละเอียดสินค้า',
+              style: GoogleFonts.kanit(),
+            ),
             backgroundColor: HexColor('#36803a'),
+          ),
+
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: new Text(''),
+                        ),
+                        IconButton(
+                            icon: LineIcon(LineIcons.shoppingCart),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartPage()),
+                              );
+                            }),
+                      ],
+                    ),
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        height: 160,
+                        width: double.infinity,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Image.network(
+                          widget.itemImg,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Card(
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.itemName,
+                              style: GoogleFonts.kanit(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                              )),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Card(
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child:
+                              Text('ขนาด' + ' ${widget.itemCapacity}' + ' ML ',
+                                  style: GoogleFonts.kanit(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  )),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Container(
+                    child: Padding(
+                        padding: EdgeInsets.all(4),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: const EdgeInsets.all(2),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                '  ${widget.itemPrice}' + ' บาท  ',
+                                style: GoogleFonts.kanit(
+                                    color: HexColor('#ffffff')),
+                              ),
+                            ],
+                          ),
+                        )),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: addCartBtn,
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          'คำอธิบาย ' + '${widget.itemDetail}',
+                          style: GoogleFonts.kanit(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          'วิธีใช้ ' + '${widget.itemHowToUse}',
+                          style: GoogleFonts.kanit(),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ));
   }

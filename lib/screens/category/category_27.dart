@@ -102,8 +102,8 @@ class Cate27State extends State<Cate27> {
                     return StaggeredGridView.countBuilder(
                       crossAxisCount: 2,
                       itemCount: productController.productList.length,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
                       itemBuilder: (context, index) {
                         return ProductTile(
                             productController.productList[index]);
