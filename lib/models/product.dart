@@ -74,7 +74,7 @@ class Product {
       id: json["id"] as int,
       pdBest: json["pd_best"] as int,
       pdCapacity:
-          json["pd_capacity"] == null ? null : json["pd_capacity"] as String,
+          json["pd_capacity"] ??='ไม่ระบุ',
       pdCode: json["pd_code"] == null ? null : json["pd_code"] as String,
       pdCom: json["pd_com"] as int,
       pdCost: json["pd_cost"] as int,

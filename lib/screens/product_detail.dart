@@ -28,42 +28,16 @@ class GetItem extends StatefulWidget {
 }
 
 class ProductDetailPageState extends State<GetItem> {
+  int _itemCount = 1;
+
   @override
   Widget build(BuildContext context) {
-    final addCartBtn = Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.remove_circle,
-            color: Colors.red,
-          ),
-          onPressed: () {},
-        ),
-        Text('จำนวน  ' + '1',style: GoogleFonts.kanit(
-          fontWeight: FontWeight.bold
-        ),),
-        IconButton(
-          icon: Icon(
-            Icons.add_box,
-            color: Colors.green,
-          ),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.add_shopping_cart,
-            color: Colors.blue,
-          ),
-          onPressed: () {},
-        ),
-      ],
-    );
     return WillPopScope(
         onWillPop: () {
           return new Future(() => true);
         },
         child: Scaffold(
+          backgroundColor: HexColor('#f0f0f0'),
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,
@@ -76,47 +50,50 @@ class ProductDetailPageState extends State<GetItem> {
 
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: new Text(''),
-                        ),
-                        IconButton(
-                            icon: LineIcon(LineIcons.shoppingCart),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CartPage()),
-                              );
-                            }),
-                      ],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(16),
+                  //   child: Row(
+                  //     children: [
+                  //       Expanded(
+                  //         child: new Text(widget.itemName),
+                  //       ),
+                  //       IconButton(
+                  //           icon: LineIcon(LineIcons.shoppingCart),
+                  //           onPressed: () {
+                  //             Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                   builder: (context) => CartPage()),
+                  //             );
+                  //           }),
+                  //     ],
+                  //   ),
+                  // ),
                   Stack(
                     children: [
-                      Container(
-                        height: 160,
-                        width: double.infinity,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Image.network(
-                          widget.itemImg,
-                          fit: BoxFit.fitHeight,
+                      Card(
+                        child: Container(
+                          height: 160,
+                          width: double.infinity,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Image.network(
+                            widget.itemImg,
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 8),
                   Container(
+                    width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(4),
                       child: Card(
@@ -133,17 +110,17 @@ class ProductDetailPageState extends State<GetItem> {
                   ),
                   SizedBox(height: 2),
                   Container(
+                    width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(4),
                       child: Card(
                         child: Padding(
                           padding: EdgeInsets.all(8),
-                          child:
-                              Text('ขนาด' + ' ${widget.itemCapacity}' + ' ML ',
-                                  style: GoogleFonts.kanit(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  )),
+                          child: Text('ขนาด' + ' ${widget.itemCapacity}' + '',
+                              style: GoogleFonts.kanit(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              )),
                         ),
                       ),
                     ),
@@ -172,14 +149,63 @@ class ProductDetailPageState extends State<GetItem> {
                   ),
                   SizedBox(height: 8),
                   Container(
-                    alignment: Alignment.centerLeft,
+                    width: double.infinity,
+                    alignment: Alignment.center,
                     child: Padding(
                       padding: const EdgeInsets.all(2),
-                      child: addCartBtn,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          _itemCount != 1
+                              ? new IconButton(
+                                  icon: new Icon(
+                                    Icons.remove_circle,
+                                    color: Colors.red,
+                                    size: 30,
+                                  ),
+                                  onPressed: () => setState(() => _itemCount--),
+                                )
+                              : Container(
+                                  alignment: Alignment.center,
+                                ),
+                          Padding(padding: EdgeInsets.all(4)),
+                          new Text(
+                            '  จำนวน   ' + _itemCount.toString(),
+                            style: GoogleFonts.kanit(
+                                fontWeight: FontWeight.bold, fontSize: 16.0),
+                          ),
+                          new IconButton(
+                            icon: new Icon(
+                              Icons.add_box,
+                              color: Colors.green,
+                              size: 30,
+                            ),
+                            onPressed: () => setState(() => _itemCount++),
+                          ),
+                          TextButton(
+                            //ตระกร้า
+                              // icon: Icon(
+                              //   Icons.add_shopping_cart,
+                              //   color: Colors.blue,
+                              // ),
+                              child: Text('ใส่ตระกร้า'),
+                            onPressed: () {
+                              var addCart = new MaterialPageRoute(
+                                builder: (BuildContext contex) => CartPage(
+                                  itemIdToCart: widget.itemId,
+                                  itemValueCount: _itemCount,
+                                ),
+                              );
+                              Navigator.of(context).push(addCart);
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 2),
                   Container(
+                    width: double.infinity,
                     alignment: Alignment.centerLeft,
                     child: Card(
                       child: Padding(
@@ -193,6 +219,7 @@ class ProductDetailPageState extends State<GetItem> {
                   ),
                   SizedBox(height: 2),
                   Container(
+                    width: double.infinity,
                     alignment: Alignment.centerLeft,
                     child: Card(
                       child: Padding(
