@@ -54,25 +54,6 @@ class ProductDetailPageState extends State<GetItem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.all(16),
-                  //   child: Row(
-                  //     children: [
-                  //       Expanded(
-                  //         child: new Text(widget.itemName),
-                  //       ),
-                  //       IconButton(
-                  //           icon: LineIcon(LineIcons.shoppingCart),
-                  //           onPressed: () {
-                  //             Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                   builder: (context) => CartPage()),
-                  //             );
-                  //           }),
-                  //     ],
-                  //   ),
-                  // ),
                   Stack(
                     children: [
                       Card(
@@ -184,16 +165,17 @@ class ProductDetailPageState extends State<GetItem> {
                           ),
                           TextButton(
                             //ตระกร้า
-                              // icon: Icon(
-                              //   Icons.add_shopping_cart,
-                              //   color: Colors.blue,
-                              // ),
-                              child: Text('ใส่ตระกร้า'),
+                            // icon: Icon(
+                            //   Icons.add_shopping_cart,
+                            //   color: Colors.blue,
+                            // ),
+                            child: Text('ใส่ตระกร้า'),
                             onPressed: () {
                               var addCart = new MaterialPageRoute(
                                 builder: (BuildContext contex) => CartPage(
                                   itemIdToCart: widget.itemId,
                                   itemValueCount: _itemCount,
+                                  itemImg:widget.itemImg
                                 ),
                               );
                               Navigator.of(context).push(addCart);

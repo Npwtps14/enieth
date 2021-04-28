@@ -41,9 +41,12 @@ dependencies:
   flushbar: ^1.10.4
   cupertino_icons: ^1.0.2
   google_fonts: ^2.0.0
+  get_it: ^5.0.3
+  chopper: ^3.0.2
+  json_annotation: 3.1.1
+  # chopper_generator: ^3.0.0
 
 
-  
 
 
 
@@ -54,7 +57,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+  build_runner: ^1.7.1
+  json_serializable: 3.5.1
+  chopper_generator: ^3.0.0
+
+
+
+
+ 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
