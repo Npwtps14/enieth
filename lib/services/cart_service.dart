@@ -1,6 +1,5 @@
 import 'package:enie_production/models/cart.dart';
 import 'package:enie_production/models/cart_list.dart';
-// import 'package:chopper_generator/chopper_generator.dart';
 import 'package:chopper/chopper.dart';
 
 part 'cart_service.chopper.dart';
@@ -11,7 +10,7 @@ abstract class CartsService extends ChopperService {
   static CartsService create([ChopperClient client]) => _$CartsService(client);
 
   // static const API = 'https://tq-notes-api-jkrgrdggbq-el.a.run.app';
-  static const API = 'https://mf-salon-api.herokuapp.com';
+  static const API = 'https://app1.fantasy.co.th';
 
   // @Get(path: '{user_id}')
   // Future<Response<List<NoteForListing>>> getNotesList(@Part()String user_id );

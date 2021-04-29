@@ -6,11 +6,12 @@ part 'cart_list.g.dart';
 class CartList {
   int id ;
   int userID ;
-  int productID ;
-  double productPrice ;
+  // int productID ;
+  int product_id;
+  // double productPrice ;
 
 
-  CartList({  this.id, this.userID, this.productID, this.productPrice});
+  CartList({  this.id, this.userID, this.product_id});
   static const fromJson = _$CartListFromJson;
 
 //   // static const fromJson = _$CartListFromJson;

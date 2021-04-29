@@ -19,8 +19,9 @@ class JsonSerializableConverter extends JsonConverter {
     } else {
       jsonFactory = factories[T];
     }
-    if (jsonFactory ==! null || jsonFactory is! JsonFactory<T>) {
+    if (jsonFactory == null || jsonFactory is! JsonFactory<T>) {
       /// throw serializer not found error;
+    //  ระวังค่าว่าง !!!!!!
       return null;
     }
 

@@ -9,15 +9,16 @@ part of 'cart_list.dart';
 CartList _$CartListFromJson(Map<String, dynamic> json) {
   return CartList(
     id: json['id'] as int,
-    userID: json['userID'] as int,
-    productID: json['productID'] as int,
-    productPrice: (json['productPrice'] as num)?.toDouble(),
+    userID: json['user_id'] as int,
+    product_id: json['product_id'] as int
+    // productPrice: (json['product_id'] as num)?.toDouble(),
   );
 }
 
-Map<String, dynamic> _$CartListToJson(CartList instance) => <String, dynamic>{
+Map<String, dynamic> _$CartListToJson(CartList instance) =>
+ <String, dynamic>{
       'id': instance.id,
-      'userID': instance.userID,
-      'productID': instance.productID,
-      'productPrice': instance.productPrice,
+      'user_id': instance.userID,
+      'product_id': instance.product_id,
+      // 'productPrice': instance.productPrice,
     };
