@@ -1,5 +1,6 @@
 import 'package:enie_production/screens/cart_screen.dart';
 import 'package:enie_production/screens/home_screen.dart';
+import 'package:enie_production/screens/promotion.dart';
 import 'package:enie_production/screens/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
@@ -18,7 +19,7 @@ class NavBarState extends State<NavBar> {
   final widgetOptions = [
     new HomePage(),
     new CategoryPage(),
-    new CartPage(),
+    new PromotionPage(),
     new UsersPage()
   ];
 
@@ -48,8 +49,8 @@ class NavBarState extends State<NavBar> {
                 title: Text('Shop')),
             BottomNavigationBarItem(
                 // ignore: deprecated_member_use
-                icon: LineIcon(LineIcons.shoppingCart),
-                title: Text('Cart')),
+                icon: Icon(Icons.favorite),
+                title: Text('Promotion')),
 
             BottomNavigationBarItem(
                 // ignore: deprecated_member_use

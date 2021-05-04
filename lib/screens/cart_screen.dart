@@ -1,6 +1,8 @@
 import 'package:chopper/chopper.dart';
 import 'package:enie_production/models/cart_list.dart';
+import 'package:enie_production/screens/nav_bar.dart';
 import 'package:enie_production/services/cart_service.dart';
+import 'package:enie_production/widgets/cart_remove.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +30,8 @@ class CartPageState extends State<CartPage> {
   Response<List<CartList>> _apiResponse;
   bool _isLoading = false;
 
+  get index => null;
+
   String formatDateTime(DateTime dateTime) {
     return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
   }
@@ -52,84 +56,155 @@ class CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        return new Future(() => true);
-      },
-      child: Scaffold(
+    // final total = Container(
+    //   alignment: Alignment.center,
+    //   child: Center(
+    //     child: Container(
+    //       alignment: Alignment.center,
+    //       child: Text("cssa"),
+    //     ),
+    //   ),
+    // );
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 1,
+        child: Scaffold(
+          backgroundColor: HexColor('#ffffff'),
           resizeToAvoidBottomInset: true, //remove warnning pixel
           appBar: AppBar(
-            automaticallyImplyLeading: true,
-            title: Text('ตระกร้า', style: GoogleFonts.kanit()),
             backgroundColor: HexColor('#36803a'),
+            title: Text(
+              "ตระกร้าสินค้า",
+              style: GoogleFonts.kanit(),
+            ),
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NavBar()),
+                );
+              },
+              child: Icon(
+                Icons.arrow_back, // add custom icons also
+              ),
+            ),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+              ),
+            ],
           ),
-          body: Builder(
-            builder: (_) {
-              if (_isLoading) {
-                return Center(child: CircularProgressIndicator());
-              }
+          body: SafeArea(
+            child: Column(children: <Widget>[
+              Container(
+                color: HexColor('#ededed'),
+                height: MediaQuery.of(context).size.height /
+                    1.3, // Also Including Tab-bar height.
 
-              if (!_apiResponse.isSuccessful) {
-                return Center(child: Text('An error occurred'));
-              }
+                child: Container(
+                  child: Builder(
+                    builder: (_) {
+                      if (_isLoading) {
+                        return Center(child: CircularProgressIndicator());
+                      }
 
-              return ListView.separated(
-                separatorBuilder: (_, __) =>
-                    Divider(height: 1, color: Colors.white),
-                itemBuilder: (context, index) {
-                  return Dismissible(
-                    key: ValueKey(_apiResponse.body[index].id),
-                    direction: DismissDirection.startToEnd,
-                    onDismissed: (direction) {},
-                    // confirmDismiss: (direction) async {
-                    //   final result = await showDialog(context: context, builder: (_) => NoteDelete());
+                      if (!_apiResponse.isSuccessful) {
+                        return Center(child: Text('An error occurred'));
+                      }
 
-                    //   if (result) {
-                    //     final deleteResult = await service.deleteNote(_apiResponse.body[index].id.toString());
-                    //     var message = '';
+                      return ListView.separated(
+                        separatorBuilder: (_, __) =>
+                            Divider(height: 1, color: HexColor('#ededed')),
+                        itemBuilder: (context, index) {
+                          return Dismissible(
+                            key: ValueKey(_apiResponse.body[index].id),
+                            direction: DismissDirection.startToEnd,
+                            onDismissed: (direction) {},
+                            confirmDismiss: (direction) async {
+                              final result = await showDialog(
+                                  context: context,
+                                  builder: (_) => CartDelete());
 
-                    //     if (deleteResult != null && deleteResult.isSuccessful) {
-                    //       message = 'The note was deleted successfully';
-                    //     } else {
-                    //       message = 'An error occrued';
-                    //     }
-                    //     Scaffold.of(context).showSnackBar(SnackBar(content: Text(message),duration: new Duration(milliseconds: 1000)));
+                              if (result) {
+                                final deleteResult = await service.deleteCart(
+                                    _apiResponse.body[index].id.toString());
+                                var message = '';
 
-                    //     return deleteResult.isSuccessful;
-                    //   }
-                    //   print(result);
-                    //   return result;
-                    // },
-                    background: Container(
-                      color: Colors.red,
-                      padding: EdgeInsets.only(left: 16),
-                      child: Align(
-                        child: Icon(Icons.delete, color: Colors.white),
-                        alignment: Alignment.centerLeft,
-                      ),
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        _apiResponse.body[index].product_id.toString(),
-                        style: TextStyle(color: Theme.of(context).primaryColor),
-                      ),
-                      subtitle: Text(
-                          // 'Last edited on ${formatDateTime(_apiResponse.body[index].product_id ?? _apiResponse.body[index].product_price)}'),
-                          'Last edited on '),
-                      onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (_) => NoteModify(
-                        //         noteID: _apiResponse.body[index].user_id.toString()))).then((data) {
-                        //           _fetchNotes();
-                        //         });
-                      },
-                    ),
-                  );
-                },
-                itemCount: _apiResponse.body.length,
-              );
-            },
-          )),
+                                if (deleteResult != null &&
+                                    deleteResult.isSuccessful) {
+                                  message = 'The note was deleted successfully';
+                                } else {
+                                  message = 'An error occrued';
+                                }
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                    content: Text(message),
+                                    duration:
+                                        new Duration(milliseconds: 1000)));
+
+                                return deleteResult.isSuccessful;
+                              }
+                              print(result);
+                              return result;
+                            },
+                            background: Container(
+                              color: Colors.red,
+                              padding: EdgeInsets.only(left: 16),
+                              child: Align(
+                                child: Icon(Icons.delete, color: Colors.white),
+                                alignment: Alignment.centerLeft,
+                              ),
+                            ),
+                            child: Container(
+                              child: Card(
+                                child: ListTile(
+                                  title: Text(
+                                    _apiResponse.body[index].product_id
+                                        .toString(),
+                                    style: TextStyle(
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                  subtitle: Text('ราคา'),
+                                  onTap: () {},
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        itemCount: _apiResponse.body.length,
+                      );
+                    },
+                  ),
+                ),
+              ),
+
+              //TabBarView(children: [ImageList(),])
+              Center(
+                  child: Container(
+                padding: EdgeInsets.only(top: 10),
+                child: RaisedButton(
+                  color: Colors.blueAccent,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  onPressed: () {
+                    var addCart = new MaterialPageRoute(
+                      builder: (BuildContext contex) =>
+                          CartPage(itemImg: widget.itemImg),
+                    );
+                    Navigator.of(context).push(addCart);
+                  },
+                  child: Text(
+                    "สั่งสินค้า",
+                    style: GoogleFonts.kanit(color: Colors.white),
+                  ),
+                ),
+              )),
+            ]),
+          ),
+        ),
+      ),
     );
   }
 }

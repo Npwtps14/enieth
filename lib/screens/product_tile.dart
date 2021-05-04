@@ -14,23 +14,24 @@ class ProductTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return GestureDetector(
       onTap: () {
         var itemDetail = new MaterialPageRoute(
-          builder: (BuildContext contex) => GetItem(
-              itemId: product.id,
-              itemName: product.pdNameTh,
-              itemDetail: product.pdDetail,
-              itemImg: product.pdMainImage,
-              itemPrice: product.pdPriceSalon,
-              itemCapacity: product.pdCapacity,
-              itemHowToUse:product.pdHowToUse)
-        );
+            builder: (BuildContext contex) => GetItem(
+                itemId: product.id,
+                itemName: product.pdNameTh,
+                itemDetail: product.pdDetail,
+                itemImg: product.pdMainImage,
+                itemPrice: product.pdPriceSalon,
+                itemCapacity: product.pdCapacity,
+                itemHowToUse: product.pdHowToUse));
         Navigator.of(context).push(itemDetail);
       },
       child: Card(
         elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(13.0),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -43,7 +44,7 @@ class ProductTile extends StatelessWidget {
                     width: double.infinity,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.network(
                       product.pdMainImage,

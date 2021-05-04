@@ -137,7 +137,7 @@ class ProductDetailPageState extends State<GetItem> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          _itemCount != 1
+                          _itemCount != 0
                               ? new IconButton(
                                   icon: new Icon(
                                     Icons.remove_circle,
@@ -163,23 +163,23 @@ class ProductDetailPageState extends State<GetItem> {
                             ),
                             onPressed: () => setState(() => _itemCount++),
                           ),
-                          TextButton(
-                            //ตระกร้า
-                            // icon: Icon(
-                            //   Icons.add_shopping_cart,
-                            //   color: Colors.blue,
-                            // ),
-                            child: Text('ใส่ตระกร้า'),
+                          RaisedButton(
+                            color: Colors.blueAccent,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
                             onPressed: () {
                               var addCart = new MaterialPageRoute(
                                 builder: (BuildContext contex) => CartPage(
-                                  itemIdToCart: widget.itemId,
-                                  itemValueCount: _itemCount,
-                                  itemImg:widget.itemImg
-                                ),
+                                    itemIdToCart: widget.itemId,
+                                    itemValueCount: _itemCount,
+                                    itemImg: widget.itemImg),
                               );
                               Navigator.of(context).push(addCart);
                             },
+                            child: Text(
+                              "ใส่ตระกร้า",
+                              style: GoogleFonts.kanit(color: Colors.white),
+                            ),
                           ),
                         ],
                       ),
@@ -202,10 +202,9 @@ class ProductDetailPageState extends State<GetItem> {
                   SizedBox(height: 2),
                   Container(
                     width: double.infinity,
-                    alignment: Alignment.centerLeft,
                     child: Card(
                       child: Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           'วิธีใช้ ' + '${widget.itemHowToUse}',
                           style: GoogleFonts.kanit(),
