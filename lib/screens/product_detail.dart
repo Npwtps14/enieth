@@ -1,9 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
-
 import 'cart_screen.dart';
 
 class GetItem extends StatefulWidget {
@@ -27,8 +27,30 @@ class GetItem extends StatefulWidget {
   ProductDetailPageState createState() => new ProductDetailPageState();
 }
 
+//Getitem จากหน้า product มาหน้า Product details
 class ProductDetailPageState extends State<GetItem> {
-  int _itemCount = 1;
+  Dio dio = new Dio();
+  int _itemCount = 1; // จำนวน item + and -
+
+  Future postCartData() async {
+    final String pathUrl = 'https://app1.fantasy.co.th/carts';
+
+    dynamic cartData = {
+      "user_id": "1",
+      "product_id": widget.itemId,
+      "item_count": this._itemCount,
+      "status": "1",
+      "product_price": widget.itemPrice,
+      "product_img": widget.itemImg
+    };
+    var response = await dio.post(pathUrl,
+        data: cartData,
+        options: Options(headers: {
+          'Content-type': 'application/json',
+        }));
+
+    return response.data;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,14 +189,10 @@ class ProductDetailPageState extends State<GetItem> {
                             color: Colors.blueAccent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
-                            onPressed: () {
-                              var addCart = new MaterialPageRoute(
-                                builder: (BuildContext contex) => CartPage(
-                                    itemIdToCart: widget.itemId,
-                                    itemValueCount: _itemCount,
-                                    itemImg: widget.itemImg),
-                              );
-                              Navigator.of(context).push(addCart);
+                            onPressed: () async {
+                              await postCartData().then((value) {
+                                print(value);
+                              });
                             },
                             child: Text(
                               "ใส่ตระกร้า",
@@ -191,12 +209,14 @@ class ProductDetailPageState extends State<GetItem> {
                     alignment: Alignment.centerLeft,
                     child: Card(
                       child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'คำอธิบาย ' + '${widget.itemDetail}',
-                          style: GoogleFonts.kanit(),
-                        ),
-                      ),
+                          padding: EdgeInsets.all(8.0),
+                          child: Container(
+                            width: double.infinity,
+                            child: Text(
+                              'คำอธิบาย ' + '${widget.itemDetail}',
+                              style: GoogleFonts.kanit(),
+                            ),
+                          )),
                     ),
                   ),
                   SizedBox(height: 2),
