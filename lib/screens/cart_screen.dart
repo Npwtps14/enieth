@@ -159,17 +159,52 @@ class CartPageState extends State<CartPage> {
                             ),
                             child: Container(
                               child: Card(
-                                child: ListTile(
-                                  title: Text(
-                                    _apiResponse.body[index].product_id
-                                        .toString(),
-                                    style: TextStyle(
-                                        color: Theme.of(context).primaryColor),
-                                  ),
-                                  subtitle: Text('ราคา'),
-                                  onTap: () {},
+                                  // child: ListTile(
+                                  //   title: Text(
+                                  //     'Product id' +
+                                  //         _apiResponse.body[index].product_id
+                                  //             .toString(),
+                                  //     style: TextStyle(
+                                  //         color: Theme.of(context).primaryColor),
+                                  //   ),
+                                  //   subtitle: Text('ราคา' +'   '+
+                                  //       _apiResponse.body[index].product_price
+                                  //           .toString()),
+                                  //   onTap: () {},
+                                  // ),
+                                  child: ListTile(
+                                leading: new Image.network(
+                                  _apiResponse.body[index].product_img.toString(),
+                                  fit: BoxFit.cover,
+                                  width: 100.0,
                                 ),
-                              ),
+
+                                title: new Text(
+                                  _apiResponse.body[index].product_name, //name
+                                  style: new TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: new Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      new Text( 'จำนวน'+' ' + _apiResponse.body[index].item_count.toString(),
+                                          style: new TextStyle(
+                                              fontSize: 13.0,
+                                              fontWeight: FontWeight.normal)),
+                                      new Text(
+                                          'ราคา: ${ _apiResponse.body[index].product_price}',
+                                          style: new TextStyle(
+                                              fontSize: 11.0,
+                                              fontWeight: FontWeight.normal)),
+                                    ]),
+                                //trailing: ,
+                                // onTap: () {
+                                //   _showSnackBar(context, _allCities[index]);
+                                // },
+                              )),
                             ),
                           );
                         },

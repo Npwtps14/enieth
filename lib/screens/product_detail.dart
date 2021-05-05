@@ -17,7 +17,7 @@ class GetItem extends StatefulWidget {
 
   const GetItem(
       {int this.itemId,
-      String this.itemName,
+      this.itemName,
       this.itemDetail,
       this.itemImg,
       this.itemPrice,
@@ -30,7 +30,15 @@ class GetItem extends StatefulWidget {
 //Getitem จากหน้า product มาหน้า Product details
 class ProductDetailPageState extends State<GetItem> {
   Dio dio = new Dio();
-  int _itemCount = 1; // จำนวน item + and -
+  int _itemCount = 1;
+
+  num total; // จำนวน item + and -
+  // void main() {
+  //   int count = this._itemCount;
+  //   double productPrice = widget.itemPrice;
+  //   double total = count * productPrice ;
+  //   print(total);
+  // }
 
   Future postCartData() async {
     final String pathUrl = 'https://app1.fantasy.co.th/carts';
@@ -38,9 +46,10 @@ class ProductDetailPageState extends State<GetItem> {
     dynamic cartData = {
       "user_id": "1",
       "product_id": widget.itemId,
+      "product_name": widget.itemName,
       "item_count": this._itemCount,
       "status": "1",
-      "product_price": widget.itemPrice,
+      "product_price": this.total,
       "product_img": widget.itemImg
     };
     var response = await dio.post(pathUrl,
@@ -142,7 +151,8 @@ class ProductDetailPageState extends State<GetItem> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                '  ${widget.itemPrice}' + ' บาท  ',
+                                '  ${this.total = this._itemCount * widget.itemPrice}' +
+                                    ' บาท  ',
                                 style: GoogleFonts.kanit(
                                     color: HexColor('#ffffff')),
                               ),

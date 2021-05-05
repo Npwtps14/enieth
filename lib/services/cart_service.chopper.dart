@@ -7,7 +7,6 @@ part of 'cart_service.dart';
 // **************************************************************************
 
 class _$CartsService extends CartsService {
-  var x = 1;
   _$CartsService([ChopperClient client]) {
     if (client == null) return;
     this.client = client;
@@ -16,15 +15,13 @@ class _$CartsService extends CartsService {
   final definitionType = CartsService;
 
   Future<Response<List<CartList>>> getCartsList() {
-    // final $url = '/carts?user_id=$x';
-         final $url = '/carts';
-
+    final $url = '/carts';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<List<CartList>, CartList>($request);
   }
 
   Future<Response<Cart>> getCart(String user_id) {
-    final $url = '/carts';
+    final $url = '/carts/${user_id}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<Cart, Cart>($request);
   }
