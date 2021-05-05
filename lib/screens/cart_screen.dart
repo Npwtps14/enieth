@@ -174,7 +174,7 @@ class CartPageState extends State<CartPage> {
                                   // ),
                                   child: ListTile(
                                 leading: new Image.network(
-                                  _apiResponse.body[index].product_img.toString(),
+                                  _apiResponse.body[index].product_img,
                                   fit: BoxFit.cover,
                                   width: 100.0,
                                 ),
@@ -190,12 +190,17 @@ class CartPageState extends State<CartPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      new Text( 'จำนวน'+' ' + _apiResponse.body[index].item_count.toString(),
+                                      new Text(
+                                          'จำนวน' +
+                                              ' ' +
+                                              _apiResponse
+                                                  .body[index].item_count
+                                                  .toString(),
                                           style: new TextStyle(
                                               fontSize: 13.0,
                                               fontWeight: FontWeight.normal)),
                                       new Text(
-                                          'ราคา: ${ _apiResponse.body[index].product_price}',
+                                          'ราคา: ${_apiResponse.body[index].product_price}',
                                           style: new TextStyle(
                                               fontSize: 11.0,
                                               fontWeight: FontWeight.normal)),
