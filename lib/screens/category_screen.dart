@@ -16,9 +16,12 @@ import 'package:enie_production/screens/category/category_5.dart';
 import 'package:enie_production/screens/category/category_1.dart';
 import 'package:enie_production/screens/category/category_1.dart';
 import 'package:enie_production/screens/category/category_8.dart';
+import 'package:enie_production/screens/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 import 'category/category_1.dart';
 import 'category/category_4.dart';
@@ -53,7 +56,6 @@ class _CategoryPageState extends State<CategoryPage> {
   final String textCate19 = 'กรรไกร (Scissors)';
   final String textCate20 = 'รถเข็น';
 
-
   @override
   Widget build(BuildContext context) {
     // var response = Response();
@@ -64,8 +66,41 @@ class _CategoryPageState extends State<CategoryPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false, //remove warnning pixel
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text('หมวดสินค้า', style: GoogleFonts.kanit()),
+          automaticallyImplyLeading: true,
+          title: Text(
+            'หมวดสินค้า',
+            style: GoogleFonts.kanit(),
+          ),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NavBar()),
+              );
+            },
+            child: Icon(
+              Icons.arrow_back, // add custom icons also
+            ),
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: IconButton(
+                    icon: LineIcon(LineIcons.shoppingCart),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NavBar()),
+                      );
+                    }),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 20.0),
+            ),
+          ],
           backgroundColor: HexColor('#36803a'),
         ),
         body: Container(
@@ -80,9 +115,7 @@ class _CategoryPageState extends State<CategoryPage> {
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 var homeRounte = new MaterialPageRoute(
-                  builder: (BuildContext contex) =>
-                      Cate1(
-                        cate: textCate1),
+                  builder: (BuildContext contex) => Cate1(cate: textCate1),
                 );
                 Navigator.of(context).push(homeRounte);
               },

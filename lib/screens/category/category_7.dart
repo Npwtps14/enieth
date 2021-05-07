@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:enie_production/controllers/category_controllers/cate_id_1.dart';
-import 'package:enie_production/controllers/category_controllers/cate_id_4.dart';
 import 'package:enie_production/controllers/category_controllers/cate_id_7.dart';
 import 'package:enie_production/models/product.dart';
 import 'package:enie_production/screens/cart_screen.dart';

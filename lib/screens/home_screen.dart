@@ -23,19 +23,20 @@ class _HomePageState extends State<HomePage> {
                   leading: GestureDetector(),
                   actions: <Widget>[
                     Padding(
-                        padding: EdgeInsets.only(right: 20.0),
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: IconButton(
-                              icon: LineIcon(LineIcons.shoppingCart),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CartPage()),
-                                );
-                              }),
-                        )),
+                      padding: EdgeInsets.only(right: 20.0),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: IconButton(
+                            icon: LineIcon(LineIcons.shoppingCart),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartPage()),
+                              );
+                            }),
+                      ),
+                    ),
                     Padding(
                       padding: EdgeInsets.only(right: 20.0),
                     ),

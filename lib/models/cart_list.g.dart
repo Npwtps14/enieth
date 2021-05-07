@@ -14,7 +14,8 @@ CartList _$CartListFromJson(Map<String, dynamic> json) {
     item_count: json['item_count'] as int,
     status: json['status'] as int,
     product_price: (json['product_price'] as num)?.toDouble(),
-    product_img: json['product_img'] as String,
+    product_img: json['product_img'] ??=
+        'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/itemProduct%2Fimage-not-available.jpeg?alt=media&token=c652c858-2f61-47b0-8e54-60d077390ce5',
     discount_id: json['discount_id'] as int,
     discount_amount: json['discount_amount'] as int,
     product_name: json['product_name'] as String,

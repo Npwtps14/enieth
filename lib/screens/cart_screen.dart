@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:enie_production/models/cart_list.dart';
+import 'package:enie_production/screens/category_screen.dart';
 import 'package:enie_production/screens/nav_bar.dart';
 import 'package:enie_production/services/cart_service.dart';
 import 'package:enie_production/widgets/cart_remove.dart';
@@ -56,15 +57,6 @@ class CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final total = Container(
-    //   alignment: Alignment.center,
-    //   child: Center(
-    //     child: Container(
-    //       alignment: Alignment.center,
-    //       child: Text("cssa"),
-    //     ),
-    //   ),
-    // );
     return MaterialApp(
       home: DefaultTabController(
         length: 1,
@@ -81,7 +73,7 @@ class CartPageState extends State<CartPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NavBar()),
+                  MaterialPageRoute(builder: (context) => CategoryPage()),
                 );
               },
               child: Icon(
@@ -158,58 +150,43 @@ class CartPageState extends State<CartPage> {
                               ),
                             ),
                             child: Container(
+                              height: 100,
                               child: Card(
-                                  // child: ListTile(
-                                  //   title: Text(
-                                  //     'Product id' +
-                                  //         _apiResponse.body[index].product_id
-                                  //             .toString(),
-                                  //     style: TextStyle(
-                                  //         color: Theme.of(context).primaryColor),
-                                  //   ),
-                                  //   subtitle: Text('ราคา' +'   '+
-                                  //       _apiResponse.body[index].product_price
-                                  //           .toString()),
-                                  //   onTap: () {},
-                                  // ),
-                                  child: ListTile(
-                                leading: new Image.network(
-                                  _apiResponse.body[index].product_img,
-                                  fit: BoxFit.cover,
-                                  width: 100.0,
+                                child: ListTile(
+                                  leading: Image.network(
+                                    _apiResponse.body[index].product_img,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  title: Text(
+                                    _apiResponse
+                                        .body[index].product_name, //name
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                            'จำนวน' +
+                                                ' X ' +
+                                                _apiResponse
+                                                    .body[index].item_count
+                                                    .toString(),
+                                            style: TextStyle(
+                                                fontSize: 13.0,
+                                                fontWeight: FontWeight.normal)),
+                                        Text(
+                                            'ราคา: ${_apiResponse.body[index].product_price.toString()}',
+                                            style: TextStyle(
+                                                fontSize: 11.0,
+                                                fontWeight: FontWeight.normal)),
+                                      ]),
                                 ),
-
-                                title: new Text(
-                                  _apiResponse.body[index].product_name, //name
-                                  style: new TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                subtitle: new Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      new Text(
-                                          'จำนวน' +
-                                              ' ' +
-                                              _apiResponse
-                                                  .body[index].item_count
-                                                  .toString(),
-                                          style: new TextStyle(
-                                              fontSize: 13.0,
-                                              fontWeight: FontWeight.normal)),
-                                      new Text(
-                                          'ราคา: ${_apiResponse.body[index].product_price}',
-                                          style: new TextStyle(
-                                              fontSize: 11.0,
-                                              fontWeight: FontWeight.normal)),
-                                    ]),
-                                //trailing: ,
-                                // onTap: () {
-                                //   _showSnackBar(context, _allCities[index]);
-                                // },
-                              )),
+                              ),
                             ),
                           );
                         },
@@ -221,26 +198,34 @@ class CartPageState extends State<CartPage> {
               ),
 
               //TabBarView(children: [ImageList(),])
+              Container(
+                padding: EdgeInsets.only(top: 5),
+                child: Text(
+                  '* ปัดขวาเพื่อลบรายการสินค้า',
+                  style: GoogleFonts.kanit(color: Colors.red),
+                ),
+              ),
               Center(
-                  child: Container(
-                padding: EdgeInsets.only(top: 10),
-                child: RaisedButton(
-                  color: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  onPressed: () {
-                    var addCart = new MaterialPageRoute(
-                      builder: (BuildContext contex) =>
-                          CartPage(itemImg: widget.itemImg),
-                    );
-                    Navigator.of(context).push(addCart);
-                  },
-                  child: Text(
-                    "สั่งสินค้า",
-                    style: GoogleFonts.kanit(color: Colors.white),
+                child: Container(
+                  padding: EdgeInsets.only(top: 2),
+                  child: RaisedButton(
+                    color: Colors.blueAccent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    onPressed: () {
+                      var addCart = new MaterialPageRoute(
+                        builder: (BuildContext contex) =>
+                            CartPage(itemImg: widget.itemImg),
+                      );
+                      Navigator.of(context).push(addCart);
+                    },
+                    child: Text(
+                      "ยืนยันรายการ",
+                      style: GoogleFonts.kanit(color: Colors.white),
+                    ),
                   ),
                 ),
-              )),
+              ),
             ]),
           ),
         ),

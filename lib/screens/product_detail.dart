@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:enie_production/screens/category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -76,6 +77,36 @@ class ProductDetailPageState extends State<GetItem> {
               'รายละเอียดสินค้า',
               style: GoogleFonts.kanit(),
             ),
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CategoryPage()),
+                );
+              },
+              child: Icon(
+                Icons.arrow_back, // add custom icons also
+              ),
+            ),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: IconButton(
+                      icon: LineIcon(LineIcons.shoppingCart),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CartPage()),
+                        );
+                      }),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+              ),
+            ],
             backgroundColor: HexColor('#36803a'),
           ),
 
