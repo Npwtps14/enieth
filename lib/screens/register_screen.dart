@@ -53,85 +53,71 @@ class _RegisterState extends State<Register> {
     final salonsName = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.person),
     );
     final salonsLastName = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.person),
     );
     final salonsNickName = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.person),
     );
     final salonsStoreName = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.store),
     );
     final email = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.mail),
     );
     final address = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.location_city),
     );
     final village = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.location_city),
     );
     final alley = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.location_city),
     );
     final road = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.location_city),
     );
     final country_id = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.map),
     );
     final province_id = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.map),
     );
     final district_id = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.map),
     );
     final subdistrict_id = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.map),
     );
     final zipcode = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      obscureText: true,
       decoration: buildInputDecoration("", Icons.pin_drop),
     );
     final salonImg = Center(
