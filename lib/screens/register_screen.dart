@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:enie_production/models/user.dart';
 import 'package:enie_production/screens/login_screen.dart';
 import 'package:enie_production/services/auth_service.dart';
@@ -6,10 +8,9 @@ import 'package:enie_production/widgets/login_btn.dart';
 import 'package:enie_production/widgets/validators.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 import 'nav_bar.dart';
@@ -28,8 +29,14 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     AuthProvider auth = Provider.of<AuthProvider>(context);
 
+    void hideKeyboard(BuildContext context) {
+      FocusScopeNode currentFocus = FocusScope.of(context);
+      if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+        FocusManager.instance.primaryFocus.unfocus();
+      }
+    }
+
     final usernameField = TextFormField(
-      autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
       onSaved: (value) => _username = value,
       decoration: buildInputDecoration("", Icons.phone),
@@ -99,6 +106,7 @@ class _RegisterState extends State<Register> {
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
       decoration: buildInputDecoration("", Icons.map),
+      initialValue: "ประเทศไทย",
     );
     final province_id = TextFormField(
       autofocus: false,
@@ -199,92 +207,99 @@ class _RegisterState extends State<Register> {
           ),
           backgroundColor: HexColor('#36803a'),
         ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(40.0),
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 20.0),
-                label("หมายเลขโทรศัพท์"),
-                SizedBox(height: 10.0),
-                usernameField,
-                SizedBox(height: 20.0),
-                label("รหัสผ่าน"),
-                SizedBox(height: 10.0),
-                passwordField,
-                SizedBox(height: 20.0),
-                label("ยืนยันรหัสผ่าน"),
-                SizedBox(height: 10.0),
-                confirmPassword,
-                SizedBox(height: 10.0),
-                label("ชื่อ"),
-                SizedBox(height: 10.0),
-                salonsName,
-                SizedBox(height: 10.0),
-                label("นามสกุล"),
-                SizedBox(height: 10.0),
-                salonsLastName,
-                SizedBox(height: 10.0),
-                label("ชื่อเล่น"),
-                SizedBox(height: 10.0),
-                salonsNickName,
-                SizedBox(height: 10.0),
-                label("ชื่อร้าน"),
-                SizedBox(height: 10.0),
-                salonsStoreName,
-                SizedBox(height: 10.0),
-                label("Email"),
-                SizedBox(height: 10.0),
-                email,
-                SizedBox(height: 10.0),
-                label("ที่อยู่"),
-                SizedBox(height: 10.0),
-                address,
-                SizedBox(height: 10.0),
-                label("หมู่ที่"),
-                SizedBox(height: 10.0),
-                village,
-                SizedBox(height: 10.0),
-                label("ซอย"),
-                SizedBox(height: 10.0),
-                alley,
-                SizedBox(height: 10.0),
-                label("ถนน"),
-                SizedBox(height: 10.0),
-                road,
-                SizedBox(height: 10.0),
-                label("ประเทศ"),
-                SizedBox(height: 10.0),
-                country_id,
-                SizedBox(height: 10.0),
-                label("จังหวัด"),
-                SizedBox(height: 10.0),
-                province_id,
-                SizedBox(height: 10.0),
-                label("อำเภอ"),
-                SizedBox(height: 10.0),
-                district_id,
-                SizedBox(height: 10.0),
-                label("ตำบล"),
-                SizedBox(height: 10.0),
-                subdistrict_id,
-                SizedBox(height: 10.0),
-                label("รหัสไปรษณีย์"),
-                SizedBox(height: 10.0),
-                zipcode,
-                SizedBox(height: 10.0),
-                label("รูปหน้าร้าน"),
-                SizedBox(height: 10.0),
-                salonImg,
-                SizedBox(height: 20.0),
-                auth.loggedInStatus == Status.Authenticating
-                    ? loading
-                    : longButtons("Submit", doRegister),
-                SizedBox(height: 10.0),
-                backtologinLabel,
-              ],
+        body: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(40),
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20.0),
+                  label("หมายเลขโทรศัพท์"),
+                  SizedBox(height: 10.0),
+                  usernameField,
+                  SizedBox(height: 20.0),
+                  label("รหัสผ่าน"),
+                  SizedBox(height: 10.0),
+                  passwordField,
+                  SizedBox(height: 20.0),
+                  label("ยืนยันรหัสผ่าน"),
+                  SizedBox(height: 10.0),
+                  confirmPassword,
+                  SizedBox(height: 10.0),
+                  label("ชื่อ"),
+                  SizedBox(height: 10.0),
+                  salonsName,
+                  SizedBox(height: 10.0),
+                  label("นามสกุล"),
+                  SizedBox(height: 10.0),
+                  salonsLastName,
+                  SizedBox(height: 10.0),
+                  label("ชื่อเล่น"),
+                  SizedBox(height: 10.0),
+                  salonsNickName,
+                  SizedBox(height: 10.0),
+                  label("ชื่อร้าน"),
+                  SizedBox(height: 10.0),
+                  salonsStoreName,
+                  SizedBox(height: 10.0),
+                  label("Email"),
+                  SizedBox(height: 10.0),
+                  email,
+                  SizedBox(height: 10.0),
+                  label("ที่อยู่"),
+                  SizedBox(height: 10.0),
+                  address,
+                  SizedBox(height: 10.0),
+                  label("หมู่ที่"),
+                  SizedBox(height: 10.0),
+                  village,
+                  SizedBox(height: 10.0),
+                  label("ซอย"),
+                  SizedBox(height: 10.0),
+                  alley,
+                  SizedBox(height: 10.0),
+                  label("ถนน"),
+                  SizedBox(height: 10.0),
+                  road,
+                  SizedBox(height: 10.0),
+                  label("ประเทศ"),
+                  SizedBox(height: 10.0),
+                  country_id,
+                  SizedBox(height: 10.0),
+                  label("จังหวัด"),
+                  SizedBox(height: 10.0),
+                  province_id,
+                  SizedBox(height: 10.0),
+                  label("อำเภอ"),
+                  SizedBox(height: 10.0),
+                  district_id,
+                  SizedBox(height: 10.0),
+                  label("ตำบล"),
+                  SizedBox(height: 10.0),
+                  subdistrict_id,
+                  SizedBox(height: 10.0),
+                  label("รหัสไปรษณีย์"),
+                  SizedBox(height: 10.0),
+                  zipcode,
+                  SizedBox(height: 10.0),
+                  label("รูปหน้าร้าน"),
+                  SizedBox(height: 10.0),
+                  salonImg,
+                  SizedBox(height: 20.0),
+                  auth.loggedInStatus == Status.Authenticating
+                      ? loading
+                      : longButtons("Submit", doRegister),
+                  SizedBox(height: 10.0),
+                  backtologinLabel,
+                  SizedBox(height: 360.0),
+                ],
+              ),
             ),
           ),
         ),
