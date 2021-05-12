@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
 
   provider: ^5.0.0
   google_nav_bar: ^5.0.3
@@ -39,11 +40,12 @@ dependencies:
   dio: ^4.0.0
   shared_preferences: ^2.0.5
   flushbar: ^1.10.4
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.3
   google_fonts: ^2.0.0
   get_it: ^5.0.3
   chopper: ^3.0.2
   json_annotation: 3.1.1
+  enhanced_drop_down: ^0.1.6
   # chopper_generator: ^3.0.0
 
 
@@ -70,13 +72,14 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
-flutter:
+Flutter:
+  
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

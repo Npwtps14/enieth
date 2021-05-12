@@ -1,19 +1,13 @@
-import 'dart:io';
-
 import 'package:enie_production/models/user.dart';
 import 'package:enie_production/screens/login_screen.dart';
 import 'package:enie_production/services/auth_service.dart';
 import 'package:enie_production/services/user_provider.dart';
 import 'package:enie_production/widgets/login_btn.dart';
-import 'package:enie_production/widgets/validators.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-
-import 'nav_bar.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -22,8 +16,16 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
+  final String url = "https://app1.fantasy.co.th/provinces";
 
+  String _provinces;
+  String _subDistricts;
+  String _districts;
+  String _zipCode;
   String _username, _password, _confirmPassword;
+
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -108,16 +110,7 @@ class _RegisterState extends State<Register> {
       decoration: buildInputDecoration("", Icons.map),
       initialValue: "ประเทศไทย",
     );
-    final province_id = TextFormField(
-      autofocus: false,
-      validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.map),
-    );
-    final district_id = TextFormField(
-      autofocus: false,
-      validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.map),
-    );
+
     final subdistrict_id = TextFormField(
       autofocus: false,
       validator: (value) => value.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
@@ -274,11 +267,8 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 10.0),
                   label("จังหวัด"),
                   SizedBox(height: 10.0),
-                  province_id,
-                  SizedBox(height: 10.0),
                   label("อำเภอ"),
                   SizedBox(height: 10.0),
-                  district_id,
                   SizedBox(height: 10.0),
                   label("ตำบล"),
                   SizedBox(height: 10.0),

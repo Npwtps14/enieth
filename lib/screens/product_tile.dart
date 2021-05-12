@@ -1,7 +1,10 @@
 import 'package:enie_production/models/product.dart';
 import 'package:enie_production/screens/product_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
 import 'cart_screen.dart';
 
@@ -57,8 +60,8 @@ class ProductTile extends StatelessWidget {
                           backgroundColor: Colors.white,
                           child: IconButton(
                             icon: product.isFavorite.value
-                                ? Icon(Icons.favorite_rounded)
-                                : Icon(Icons.favorite_border),
+                                ? FaIcon(FontAwesomeIcons.solidHeart)
+                                : FaIcon(FontAwesomeIcons.heart),
                             onPressed: () {
                               product.isFavorite.toggle();
                             },
