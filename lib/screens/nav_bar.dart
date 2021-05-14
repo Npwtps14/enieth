@@ -1,4 +1,3 @@
-import 'package:enie_production/screens/cart_screen.dart';
 import 'package:enie_production/screens/home_screen.dart';
 import 'package:enie_production/screens/promotion.dart';
 import 'package:enie_production/screens/user_screen.dart';
@@ -6,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'category_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class NavBar extends StatefulWidget {
   NavBar({Key key}) : super(key: key);
@@ -42,7 +43,7 @@ class NavBarState extends State<NavBar> {
           items: <BottomNavigationBarItem>[
             // ignore: deprecated_member_use
             BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('Home')),
+                icon: FaIcon(FontAwesomeIcons.home), title: Text('Home')),
             BottomNavigationBarItem(
                 // ignore: deprecated_member_use
                 icon: Icon(Icons.shopping_bag),

@@ -269,6 +269,23 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 10.0),
                   label("อำเภอ"),
                   SizedBox(height: 10.0),
+                   ListTile(
+              contentPadding: EdgeInsets.all(10),
+              horizontalTitleGap: 0,
+              minVerticalPadding: 5,
+              // leading: Image.network(
+              //     'https://salon.fantasy.co.th/images/products/500/20200604141350-Pmjg5e99Qe.png'),
+              title: Text('จังหวัด', style: GoogleFonts.kanit()),
+              trailing: Icon(Icons.keyboard_arrow_right),
+              onTap: () {
+                // var homeRounte = new MaterialPageRoute(
+                  // builder: (BuildContext contex) => Cate5(
+                    
+                  // ),
+                // );
+                // Navigator.of(context).push(homeRounte);
+              },
+            ),
                   SizedBox(height: 10.0),
                   label("ตำบล"),
                   SizedBox(height: 10.0),
