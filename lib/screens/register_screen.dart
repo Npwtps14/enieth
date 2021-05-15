@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:enie_production/models/user.dart';
+import 'package:enie_production/screens/address/provinces_screen.dart';
 import 'package:enie_production/screens/login_screen.dart';
 import 'package:enie_production/services/auth_service.dart';
 import 'package:enie_production/services/user_provider.dart';
@@ -16,6 +17,12 @@ import 'package:provider/provider.dart';
 import 'nav_bar.dart';
 
 class Register extends StatefulWidget {
+  final province;
+  final district;
+  final subDistrict;
+
+  const Register({Key key, this.province = '', this.district, this.subDistrict})
+      : super(key: key);
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -190,10 +197,14 @@ class _RegisterState extends State<Register> {
         return new Future(() => false);
       },
       child: Scaffold(
+        backgroundColor: HexColor('#ededed'),
         resizeToAvoidBottomInset: false, //remove warnning pixel
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('สมัครสมาชิก'),
+          title: Text(
+            'สมัครสมาชิก',
+            style: GoogleFonts.kanit(),
+          ),
           leading: GestureDetector(
             onTap: () {
               Navigator.push(
@@ -271,22 +282,98 @@ class _RegisterState extends State<Register> {
                   label("ประเทศ"),
                   SizedBox(height: 10.0),
                   country_id,
+                  SizedBox(height: 5.0),
+                  Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.only(left: 10),
+                        horizontalTitleGap: 0,
+                        minVerticalPadding: 5,
+                        leading: Text('จังหวัด  ',
+                            style: GoogleFonts.kanit(
+                                fontSize: 16, fontWeight: FontWeight.w400)),
+                        title: Text(widget.province, style: GoogleFonts.kanit()),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {
+                          var addressPush = new MaterialPageRoute(
+                            builder: (BuildContext contex) =>
+                                ProvincesListView(),
+                          );
+                          Navigator.of(context).push(addressPush);
+                        },
+                      )),
+                  SizedBox(height: 5.0),
+                  Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.only(left: 10),
+                        horizontalTitleGap: 0,
+                        minVerticalPadding: 5,
+                        leading: Text('อำเภอ  ',
+                            style: GoogleFonts.kanit(
+                                fontSize: 16, fontWeight: FontWeight.w400)),
+                        title: Text('อำเภอ  ', style: GoogleFonts.kanit()),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {
+                          // var homeRounte = new MaterialPageRoute(
+                          // builder: (BuildContext contex) => Cate5(
+
+                          // ),
+                          // );
+                          // Navigator.of(context).push(homeRounte);
+                        },
+                      )),
+                  SizedBox(height: 5.0),
+                  Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.only(left: 10),
+                        horizontalTitleGap: 0,
+                        minVerticalPadding: 5,
+                        leading: Text('ตำบล/เขต  ',
+                            style: GoogleFonts.kanit(
+                                fontSize: 16, fontWeight: FontWeight.w400)),
+                        title: Text('ตำบล/เขต', style: GoogleFonts.kanit()),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {
+                          // var homeRounte = new MaterialPageRoute(
+                          // builder: (BuildContext contex) => Cate5(
+
+                          // ),
+                          // );
+                          // Navigator.of(context).push(homeRounte);
+                        },
+                      )),
+                  SizedBox(height: 5.0),
+                  Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.only(left: 10),
+                        horizontalTitleGap: 0,
+                        minVerticalPadding: 5,
+                        leading: Text('รหัสไปรษณีย์  ',
+                            style: GoogleFonts.kanit(
+                                fontSize: 16, fontWeight: FontWeight.w400)),
+                        title: Text('รหัสไปรษณีย์', style: GoogleFonts.kanit()),
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {
+                          // var homeRounte = new MaterialPageRoute(
+                          // builder: (BuildContext contex) => Cate5(
+
+                          // ),
+                          // );
+                          // Navigator.of(context).push(homeRounte);
+                        },
+                      )),
                   SizedBox(height: 10.0),
-                  label("จังหวัด"),
-                  SizedBox(height: 10.0),
-                  province_id,
-                  SizedBox(height: 10.0),
-                  label("อำเภอ"),
-                  SizedBox(height: 10.0),
-                  district_id,
-                  SizedBox(height: 10.0),
-                  label("ตำบล"),
-                  SizedBox(height: 10.0),
-                  subdistrict_id,
-                  SizedBox(height: 10.0),
-                  label("รหัสไปรษณีย์"),
-                  SizedBox(height: 10.0),
-                  zipcode,
                   SizedBox(height: 10.0),
                   label("รูปหน้าร้าน"),
                   SizedBox(height: 10.0),
