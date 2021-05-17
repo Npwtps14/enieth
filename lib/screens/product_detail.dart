@@ -127,7 +127,7 @@ class ProductDetailPageState extends State<GetItem> {
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Image.network(
-                            widget.itemImg,
+                            'https://office.enie.co.th/images/product/800/'+widget.itemImg,
                             fit: BoxFit.fitHeight,
                           ),
                         ),

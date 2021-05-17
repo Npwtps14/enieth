@@ -16,6 +16,7 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        // print('Img Url  '+'https://office.enie.co.th/images/product/800/'+product.pdMainImage);
         var itemDetail = new MaterialPageRoute(
             builder: (BuildContext contex) => GetItem(
                 itemId: product.id,
@@ -47,7 +48,7 @@ class ProductTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.network(
-                      product.pdMainImage,
+                     'https://office.enie.co.th/images/product/800/'+product.pdMainImage,
                       fit: BoxFit.fill,
                     ),
                   ),
