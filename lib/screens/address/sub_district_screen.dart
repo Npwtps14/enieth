@@ -24,18 +24,18 @@ class SubDistrictScreen extends StatelessWidget {
 
 class GetSubDistrict {
   int id;
-  String name;
+  String dName;
   String email;
-  String phoneNumber;
+  String dNumber;
 
-  GetSubDistrict({this.id, this.name, this.email, this.phoneNumber});
+  GetSubDistrict({this.id, this.dName, this.email, this.dNumber});
 
   factory GetSubDistrict.fromJson(Map<String, dynamic> json) {
     return GetSubDistrict(
         id: json['id'],
-        name: json['sub_district_name_th'],
+        dName: json['sub_district_name_th'],
         email: json['sub_district_name_en'],
-        phoneNumber: json['sub_district_zip_code'] ??= '');
+        dNumber: json['sub_district_zip_code'] ??= '');
   }
 }
 
@@ -48,18 +48,55 @@ class GetSubDistrict {
 // }
 class SubDistrictListView extends StatefulWidget {
   final districtID;
-
-  const SubDistrictListView({int this.districtID});
+  final provinceID;
+  final province;
+  final phoneNumber;
+  final password;
+  final confirmPassword;
+  final salonName;
+  final sloneLastName;
+  final salonNickName;
+  final salonStoreName;
+  final email;
+  final address;
+  final village;
+  final alley;
+  final road;
+  final countryID;
+  final subDistrictId;
+  final zipCode;
+  final salonImg;
+  final districtName;
+  const SubDistrictListView(
+      {this.provinceID,
+      this.phoneNumber,
+      this.password,
+      this.confirmPassword,
+      this.salonName,
+      this.sloneLastName,
+      this.salonNickName,
+      this.salonStoreName,
+      this.email,
+      this.address,
+      this.village,
+      this.alley,
+      this.road,
+      this.countryID,
+      this.districtID,
+      this.subDistrictId,
+      this.zipCode,
+      this.salonImg,
+      this.province,
+      this.districtName});
   SubDistrict createState() => SubDistrict();
 }
 
 class SubDistrict extends State<SubDistrictListView> {
-
   Future<List<GetSubDistrict>> _getSubDistrictList() async {
-    var url =
-        Uri.parse('https://app1.fantasy.co.th/sub-districts?district_id=${widget.districtID}');
+    var url = Uri.parse(
+        'https://app1.fantasy.co.th/sub-districts?district_id=${widget.districtID}');
     var response = await http.get(url);
-    
+
     if (response.statusCode == 200) {
       final jsonItems = json.decode(response.body).cast<Map<String, dynamic>>();
 
@@ -91,17 +128,38 @@ class SubDistrict extends State<SubDistrictListView> {
                 .map(
                   (user) => ListTile(
                     title: Text(
-                      user.name,
+                      user.dName,
                       style: GoogleFonts.kanit(),
                     ),
                     onTap: () {
                       var province = new MaterialPageRoute(
-                        builder: (BuildContext contex) => Register(),
+                        builder: (BuildContext contex) => Register(
+                          subDistrictName: user.dName,
+                          districtName:widget.districtName,
+                          province: widget.province,
+                          phoneNumber: widget.phoneNumber,
+                          password: widget.password,
+                          confirmPassword: widget.confirmPassword,
+                          salonName: widget.salonName,
+                          sloneLastName: widget.sloneLastName,
+                          salonNickName: widget.salonNickName,
+                          salonStoreName: widget.salonStoreName,
+                          email: widget.email,
+                          address: widget.address,
+                          village: widget.village,
+                          alley: widget.alley,
+                          road: widget.road,
+                          countryID: widget.countryID,
+                          // districtID: ,
+                          // subDistrictId: ,
+                          zipCode: user.dNumber,
+                          salonImg: widget.salonImg,
+                        ),
                       );
                       Navigator.of(context).push(province);
                     },
                     subtitle: Text(
-                      'รหัสไปรษณีย์  ' + user.phoneNumber,
+                      'รหัสไปรษณีย์  ' + user.dNumber,
                       style: GoogleFonts.kanit(),
                     ),
                     leading: CircleAvatar(

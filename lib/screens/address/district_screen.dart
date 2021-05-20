@@ -27,8 +27,7 @@ class GetDistricts {
   // int provinceID;
   int phoneNumber;
 
-  GetDistricts(
-      {this.id, this.name, this.email, this.phoneNumber});
+  GetDistricts({this.id, this.name, this.email, this.phoneNumber});
 
   factory GetDistricts.fromJson(Map<String, dynamic> json) {
     return GetDistricts(
@@ -48,8 +47,45 @@ class GetDistricts {
 // }
 class DistrictsListView extends StatefulWidget {
   final provinceID;
+  final phoneNumber;
+  final password;
+  final confirmPassword;
+  final salonName;
+  final sloneLastName;
+  final salonNickName;
+  final salonStoreName;
+  final email;
+  final address;
+  final village;
+  final alley;
+  final road;
+  final countryID;
+  final districtID;
+  final subDistrictId;
+  final zipCode;
+  final salonImg;
+  final province;
 
-  const DistrictsListView({int this.provinceID});
+  const DistrictsListView(
+      {this.provinceID,
+      this.phoneNumber,
+      this.password,
+      this.confirmPassword,
+      this.salonName,
+      this.sloneLastName,
+      this.salonNickName,
+      this.salonStoreName,
+      this.email,
+      this.address,
+      this.village,
+      this.alley,
+      this.road,
+      this.countryID,
+      this.districtID,
+      this.subDistrictId,
+      this.zipCode,
+      this.salonImg,
+      this.province});
   Districts createState() => Districts();
 }
 
@@ -93,7 +129,27 @@ class Districts extends State<DistrictsListView> {
                     onTap: () {
                       var province = new MaterialPageRoute(
                         builder: (BuildContext contex) => SubDistrictListView(
-                          districtID : dataDistrict.id
+                          districtID: dataDistrict.id,
+                          districtName:dataDistrict.name,
+                          provinceID: widget.provinceID,
+                          phoneNumber: widget.phoneNumber,
+                          password: widget.password,
+                          confirmPassword: widget.confirmPassword,
+                          salonName: widget.salonName,
+                          sloneLastName: widget.sloneLastName,
+                          salonNickName: widget.salonNickName,
+                          salonStoreName: widget.salonStoreName,
+                          email: widget.email,
+                          address: widget.address,
+                          village: widget.village,
+                          alley: widget.alley,
+                          road: widget.road,
+                          countryID: widget.countryID,
+                          province:widget.province,
+                          // districtID: ,
+                          // subDistrictId: ,
+                          // zipCode: ,
+                          salonImg: widget.salonImg,
                         ),
                       );
                       Navigator.of(context).push(province);

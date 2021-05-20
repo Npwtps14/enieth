@@ -7,6 +7,7 @@ import 'package:enie_production/widgets/validators.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
 // class LoginScreen extends StatelessWidget {
@@ -62,12 +63,23 @@ class _LoginState extends State<Login> {
     ]);
     AuthProvider auth = Provider.of<AuthProvider>(context);
 
-    final usernameField = TextFormField(
-      autofocus: false,
-      // validator: validateEmail,
-      onSaved: (value) => _username = value,
-      decoration: buildInputDecoration("Confirm password", Icons.phone),
-    );
+     var usernameField = TextFormField(
+        validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" :  null,
+        keyboardType: TextInputType.phone,
+        // controller: usernameController,
+        inputFormatters: [
+        LengthLimitingTextInputFormatter(10),
+      ],
+        // initialValue: widget.phoneNumber,
+        decoration: InputDecoration(
+          // hintText: widget.phoneNumber,
+          prefixIcon: Icon(
+            Icons.phone,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        ));
 
     final passwordField = TextFormField(
       autofocus: false,

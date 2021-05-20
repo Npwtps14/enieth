@@ -28,7 +28,7 @@ label(String title) => Text(
       style: GoogleFonts.kanit(),
     );
 
-InputDecoration buildInputDecoration(String hintText, IconData icon) {
+InputDecoration buildInputDecoration(String  , IconData icon) {
   return InputDecoration(
     prefixIcon: Icon(icon, color: HexColor('#36803a')),
     // hintText: hintText,

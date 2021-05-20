@@ -44,12 +44,50 @@ class GetProvinces {
 //   Cate32State createState() => new Cate32State();
 // }
 class ProvincesListView extends StatefulWidget {
-  
+  final phoneNumber;
+  final password;
+  final confirmPassword;
+  final salonName;
+  final sloneLastName;
+  final salonNickName;
+  final salonStoreName;
+  final email;
+  final address;
+  final village;
+  final alley;
+  final road;
+  final countryID;
+  final provinceID;
+  final districtID;
+  final subDistrictId;
+  final zipCode;
+  final salonImg;
+
+  const ProvincesListView(
+      {this.phoneNumber,
+      this.password,
+      this.confirmPassword,
+      this.salonName,
+      this.sloneLastName,
+      this.salonNickName,
+      this.salonStoreName,
+      this.email,
+      this.address,
+      this.village,
+      this.alley,
+      this.road,
+      this.countryID,
+      this.provinceID,
+      this.districtID,
+      this.subDistrictId,
+      this.zipCode,
+      this.salonImg, userName});
+
+  @override
   Provinces createState() => Provinces();
 }
 
-class Provinces extends State {
-  
+class Provinces extends State<ProvincesListView> {
   Future<List<GetProvinces>> _getProvinceList() async {
     var url = Uri.parse('https://app1.fantasy.co.th/provinces');
     var response = await http.get(url);
@@ -74,33 +112,55 @@ class Provinces extends State {
         title: Text('เลือกจังหวัด'),
         backgroundColor: HexColor('#36803a'),
       ),
-      body: FutureBuilder<List<GetProvinces>>(
-        future: _getProvinceList(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData)
-            return Center(child: CircularProgressIndicator());
+      body: Container(
+        child: FutureBuilder<List<GetProvinces>>(
+          future: _getProvinceList(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
 
-          return ListView(
-            children: snapshot.data
-                .map(
-                  (dataProvince) => ListTile(
-                    title: Text(dataProvince.province),
-                    onTap: () {
-                      var province = new MaterialPageRoute(
-                        builder: (BuildContext contex) =>
-                            DistrictsListView(provinceID: dataProvince.id),
-                      );
-                      Navigator.of(context).push(province);
-                    },
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.green,
-                      child: LineIcon(LineIcons.mapMarker),
+            return ListView(
+              children: snapshot.data
+                  .map(
+                    (dataProvince) => ListTile(
+                      title: Text(dataProvince.province),
+                      onTap: () {
+                        var province = new MaterialPageRoute(
+                          builder: (BuildContext contex) => DistrictsListView(
+                            provinceID: dataProvince.id,
+                            province:dataProvince.province,
+                            phoneNumber: widget.phoneNumber,
+                            password: widget.password,
+                            confirmPassword: widget.confirmPassword,
+                            salonName: widget.salonName,
+                            sloneLastName: widget.sloneLastName,
+                            salonNickName: widget.salonNickName,
+                            salonStoreName: widget.salonStoreName,
+                            email: widget.email,
+                            address: widget.address,
+                            village: widget.village,
+                            // alley: widget.alley,
+                            // road: widget.road,
+                            // countryID: widget.countryID,
+                            // subDistrictId: ,
+                            // zipCode: ,
+                            // salonImg: widget.salonImg,
+                          ),
+                        );
+
+                        Navigator.of(context).push(province);
+                       
+                      },
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.green,
+                        child: LineIcon(LineIcons.mapMarker),
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
-          );
-        },
+                  )
+                  .toList(),
+            );
+          },
+        ),
       ),
     );
   }

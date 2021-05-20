@@ -54,11 +54,12 @@ void main() {
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<User> getUserData() => UserPreferences().getUser();
-
+   
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
+
           home: FutureBuilder(
               future: getUserData(),
               builder: (context, snapshot) {
