@@ -57,7 +57,7 @@ class DistrictsListView extends StatefulWidget {
   final email;
   final address;
   final village;
-  final alley;
+  final alleyname;
   final road;
   final countryID;
   final districtID;
@@ -78,7 +78,7 @@ class DistrictsListView extends StatefulWidget {
       this.email,
       this.address,
       this.village,
-      this.alley,
+      this.alleyname,
       this.road,
       this.countryID,
       this.districtID,
@@ -127,7 +127,7 @@ class Districts extends State<DistrictsListView> {
                   (dataDistrict) => ListTile(
                     title: Text(dataDistrict.name),
                     onTap: () {
-                      var province = new MaterialPageRoute(
+                      var district = new MaterialPageRoute(
                         builder: (BuildContext contex) => SubDistrictListView(
                           districtID: dataDistrict.id,
                           districtName:dataDistrict.name,
@@ -142,7 +142,7 @@ class Districts extends State<DistrictsListView> {
                           email: widget.email,
                           address: widget.address,
                           village: widget.village,
-                          alley: widget.alley,
+                          alley: widget.alleyname,
                           road: widget.road,
                           countryID: widget.countryID,
                           province:widget.province,
@@ -152,7 +152,7 @@ class Districts extends State<DistrictsListView> {
                           salonImg: widget.salonImg,
                         ),
                       );
-                      Navigator.of(context).push(province);
+                      Navigator.of(context).push(district);
                     },
                     // subtitle: Text(widget.provinceID.toString()),
                     leading: CircleAvatar(

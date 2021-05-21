@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 import 'nav_bar.dart';
 
@@ -43,26 +44,26 @@ class Register extends StatefulWidget {
   final districtName;
 
   const Register(
-      {this.subDistrictName ='' ,
-      this.province ='',
+      {this.subDistrictName = '',
+      this.province = '',
       this.phoneNumber,
-      this.password,
+      this.password = '',
       this.confirmPassword,
-      this.salonName,
-      this.sloneLastName,
-      this.salonNickName,
-      this.salonStoreName,
-      this.email,
-      this.address,
-      this.village,
-      this.alley,
-      this.road,
+      this.salonName= '',
+      this.sloneLastName= '',
+      this.salonNickName= '',
+      this.salonStoreName= '',
+      this.email= '',
+      this.address= '',
+      this.village= '',
+      this.alley= '',
+      this.road= '',
       this.countryID,
-      this.subDistrictId ='',
-      this.zipCode ='',
+      this.subDistrictId = '',
+      this.zipCode = '',
       this.salonImg,
-      this.provinceID ='',
-      this.districtName =''});
+      this.provinceID = '',
+      this.districtName = ''});
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -75,16 +76,25 @@ class _RegisterState extends State<Register> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  String _password, _confirmPassword, _username ;
+  String _password, _confirmPassword, _username;
   // TextEditingController _usernameController =
 
   // var usernameController = TextEditingController();
   final phoneNumberController = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     AuthProvider auth = Provider.of<AuthProvider>(context);
-    // String _username = widget.phoneNumber;
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordContorller = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController lastNameController = TextEditingController();
+    TextEditingController nickNameController = TextEditingController();
+    TextEditingController storeNameController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController addressController = TextEditingController();
+    TextEditingController villageController = TextEditingController();
+    TextEditingController alleyController = TextEditingController();
+    TextEditingController roadController = TextEditingController();
 
     void hideKeyboard(BuildContext context) {
       FocusScopeNode currentFocus = FocusScope.of(context);
@@ -94,11 +104,21 @@ class _RegisterState extends State<Register> {
     }
 
     usernameController.text = widget.phoneNumber;
+    passwordContorller.text = widget.password;
+    nameController.text = widget.salonName;
+    lastNameController.text = widget.sloneLastName;
+    nickNameController.text = widget.salonNickName;
+    storeNameController.text = widget.salonStoreName;
+    emailController.text = widget.email;
+    addressController.text = widget.address;
+    villageController.text = widget.village;
+    roadController.text = widget.road;
+    alleyController.text = widget.alley;
 
     var usernameField = TextFormField(
         validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
-        onSaved: (value) => _username = value,
         controller: usernameController,
+        onSaved: (value) => _username = value,
         keyboardType: TextInputType.phone,
         inputFormatters: [
           LengthLimitingTextInputFormatter(10),
@@ -114,12 +134,20 @@ class _RegisterState extends State<Register> {
         ));
 
     final passwordField = TextFormField(
-      autofocus: false,
-      obscureText: true,
-      validator: (value) => value.isEmpty ? "Please enter password" : null,
-      onSaved: (value) => _password = value,
-      decoration: buildInputDecoration("Confirm password", Icons.lock),
-    );
+        autofocus: false,
+        obscureText: true,
+        controller: passwordContorller,
+        validator: (value) => value.isEmpty ? "Please enter password" : null,
+        onSaved: (value) => _password = value,
+        decoration: InputDecoration(
+          hintText: widget.password,
+          prefixIcon: Icon(
+            Icons.lock,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        ));
 
     // final confirmPassword = TextFormField(
     //   autofocus: false,
@@ -131,48 +159,129 @@ class _RegisterState extends State<Register> {
 
     final salonsName = TextFormField(
       autofocus: false,
+      controller: nameController,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.person),
+      decoration: InputDecoration(
+          hintText: widget.salonName,
+          prefixIcon: Icon(
+            Icons.person,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final salonsLastName = TextFormField(
       autofocus: false,
+      controller: lastNameController,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.person),
+      decoration: InputDecoration(
+          hintText: widget.sloneLastName,
+          prefixIcon: Icon(
+            Icons.person,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final salonsNickName = TextFormField(
+      controller: nickNameController,
       autofocus: false,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.person),
+       decoration: InputDecoration(
+          hintText: widget.salonNickName,
+          prefixIcon: Icon(
+            Icons.person,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final salonsStoreName = TextFormField(
+      controller: storeNameController,
       autofocus: false,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.store),
+       decoration: InputDecoration(
+          hintText: widget.salonStoreName,
+          prefixIcon: Icon(
+            Icons.store,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final email = TextFormField(
+      controller: emailController,
       autofocus: false,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.mail),
+       decoration: InputDecoration(
+          hintText: widget.email,
+          prefixIcon: Icon(
+            Icons.mail,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final address = TextFormField(
+      controller: addressController,
       autofocus: false,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.location_city),
+       decoration: InputDecoration(
+          hintText: widget.address,
+          prefixIcon: Icon(
+            Icons.pin_drop,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final village = TextFormField(
+      controller: villageController,
       autofocus: false,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.location_city),
+       decoration: InputDecoration(
+          hintText: widget.village,
+          prefixIcon: Icon(
+            Icons.pin_drop,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final alley = TextFormField(
+      controller: alleyController,
       autofocus: false,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.location_city),
+       decoration: InputDecoration(
+          hintText: widget.alley,
+          prefixIcon: Icon(
+            Icons.pin_drop,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final road = TextFormField(
+      controller: roadController,
       autofocus: false,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-      decoration: buildInputDecoration("", Icons.location_city),
+      decoration: InputDecoration(
+          hintText: widget.road,
+          prefixIcon: Icon(
+            Icons.pin_drop,
+            color: HexColor('#36803a'),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        )
     );
     final country_id = TextFormField(
       autofocus: false,
@@ -215,7 +324,9 @@ class _RegisterState extends State<Register> {
       final form = formKey.currentState;
       if (form.validate()) {
         form.save();
-        auth.register(_username, _password, _confirmPassword).then((response) {
+        auth
+            .register(usernameController.text, _password, _confirmPassword)
+            .then((response) {
           if (response['status']) {
             User user = response['data'];
             Provider.of<UserProvider>(context, listen: false).setUser(user);
@@ -224,7 +335,7 @@ class _RegisterState extends State<Register> {
             Flushbar(
               title: "Registration Failed",
               message: response.toString(),
-              duration: Duration(seconds: 10),
+              duration: Duration(seconds: 4),
             ).show(context);
           }
         });
@@ -235,7 +346,7 @@ class _RegisterState extends State<Register> {
           duration: Duration(seconds: 7),
         ).show(context);
       }
-      // print(usernameController.text);
+      print(usernameController.text);
     };
 
     return WillPopScope(
@@ -243,7 +354,7 @@ class _RegisterState extends State<Register> {
         return new Future(() => false);
       },
       child: Scaffold(
-        backgroundColor: HexColor('#ededed'),
+        backgroundColor: HexColor('#ffffff'),
         resizeToAvoidBottomInset: false, //remove warnning pixel
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -284,7 +395,7 @@ class _RegisterState extends State<Register> {
                   label("รหัสผ่าน"),
                   SizedBox(height: 10.0),
                   passwordField,
-                  SizedBox(height: 20.0),
+                  // SizedBox(height: 20.0),
                   // label("ยืนยันรหัสผ่าน"),
                   // SizedBox(height: 10.0),
                   // confirmPassword,
@@ -348,17 +459,17 @@ class _RegisterState extends State<Register> {
                             builder: (BuildContext contex) => ProvincesListView(
                               phoneNumber: usernameController.text,
                               // userName:widget.phoneNumber,
-                              password: passwordField,
+                              password: passwordContorller.text,
                               // confirmPassword: confirmPassword,
-                              salonName: salonsName,
-                              sloneLastName: salonsLastName,
-                              salonNickName: salonsNickName,
-                              salonStoreName: salonsStoreName,
-                              email: email,
-                              address: address,
-                              village: village,
-                              alley: alley,
-                              road: road,
+                              salonName: nameController.text,
+                              sloneLastName: lastNameController.text,
+                              salonNickName: nickNameController.text,
+                              salonStoreName: storeNameController.text,
+                              email: emailController.text,
+                              address: addressController.text,
+                              village: villageController.text,
+                              alley: alleyController.text,
+                              road: roadController.text,
                               countryID: country_id,
                               // provinceID:widget.province,
                               // districtID: ,
@@ -384,7 +495,6 @@ class _RegisterState extends State<Register> {
                                 fontSize: 16, fontWeight: FontWeight.w400)),
                         title: Text(widget.districtName,
                             style: GoogleFonts.kanit()),
-                        trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () {},
                       )),
                   SizedBox(height: 5.0),
@@ -401,7 +511,6 @@ class _RegisterState extends State<Register> {
                                 fontSize: 16, fontWeight: FontWeight.w400)),
                         title: Text(widget.subDistrictName,
                             style: GoogleFonts.kanit()),
-                        trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () {
                           // var homeRounte = new MaterialPageRoute(
                           // builder: (BuildContext contex) => Cate5(
@@ -424,7 +533,7 @@ class _RegisterState extends State<Register> {
                             style: GoogleFonts.kanit(
                                 fontSize: 16, fontWeight: FontWeight.w400)),
                         title: Text(widget.zipCode, style: GoogleFonts.kanit()),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        
                         onTap: () {
                           // var homeRounte = new MaterialPageRoute(
                           // builder: (BuildContext contex) => Cate5(
@@ -442,7 +551,7 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 20.0),
                   auth.loggedInStatus == Status.Authenticating
                       ? loading
-                      : longButtons("Submit", doRegister),
+                      : longButtons("ตกลง", doRegister),
                   SizedBox(height: 10.0),
                   backtologinLabel,
                   SizedBox(height: 360.0),
