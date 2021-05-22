@@ -1,5 +1,6 @@
 import 'package:enie_production/models/user.dart';
 import 'package:enie_production/screens/nav_bar.dart';
+import 'package:enie_production/screens/register_screen.dart';
 import 'package:enie_production/services/auth_service.dart';
 import 'package:enie_production/services/user_provider.dart';
 import 'package:enie_production/widgets/login_btn.dart';
@@ -113,7 +114,13 @@ class _LoginState extends State<Login> {
           padding: EdgeInsets.only(left: 0.0),
           child: Text("Sign up", style: TextStyle(fontWeight: FontWeight.w300)),
           onPressed: () {
-            Navigator.pushReplacementNamed(context, '/register');
+            var registerSuccess = new MaterialPageRoute(
+                            builder: (BuildContext contex) => Register(
+                             
+                            ),
+                          );
+                          Navigator.of(context).push(registerSuccess);
+                      
           },
         ),
       ],
