@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:enie_production/screens/address/sub_district_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icon.dart';
@@ -112,7 +113,7 @@ class Districts extends State<DistrictsListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('เลือกอำเภอ'),
+        title: Text('เลือกอำเภอ',style: GoogleFonts.kanit(),),
         backgroundColor: HexColor('#36803a'),
       ),
       body: FutureBuilder<List<GetDistricts>>(
@@ -125,7 +126,7 @@ class Districts extends State<DistrictsListView> {
             children: snapshot.data
                 .map(
                   (dataDistrict) => ListTile(
-                    title: Text(dataDistrict.name),
+                    title: Text(dataDistrict.name,style: GoogleFonts.kanit(),),
                     onTap: () {
                       var district = new MaterialPageRoute(
                         builder: (BuildContext contex) => SubDistrictListView(

@@ -34,6 +34,7 @@ class Register extends StatefulWidget {
   final zipCode;
   final salonImg;
   final districtName;
+  final districtID;
 
   const Register(
       {this.subDistrictName = '',
@@ -51,11 +52,12 @@ class Register extends StatefulWidget {
       this.alley = '',
       this.road = '',
       this.countryID,
-      this.subDistrictId = '',
+      this.subDistrictId,
       this.zipCode = '',
       this.salonImg,
-      this.provinceID = '',
-      this.districtName = ''});
+      this.provinceID,
+      this.districtName = '',
+      this.districtID});
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -64,7 +66,7 @@ SharedPreferences prefs;
 
 class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
-  Dio dio = new Dio();
+  var dio = Dio();
   Future postRegister() async {
     final String pathUrl = 'https://app1.fantasy.co.th/salons';
 
@@ -79,7 +81,7 @@ class _RegisterState extends State<Register> {
       "sale_id": 12,
       "salon_type": 1,
       "salon_contract_name": "James",
-      "salon_web_code": "A00001",
+      "salon_web_code": null,
       "salon_first_name": "-",
       "salon_last_name": "-",
       "salon_nick_name": "-",
@@ -91,15 +93,15 @@ class _RegisterState extends State<Register> {
       "salon_alley": null,
       "salon_road": "ราษฎร์พัฒนา 1",
       "country_id": 1,
-      "province_id": 1,
-      "district_id": 44,
-      "subdistrict_id": 142,
-      "salon_zip_code": "10240",
-      "salon_credit_limited": 50000,
-      "salon_due_total": 3000,
-      "salon_order_total": 1754114.75,
-      "salon_pay_total": 1751114.75,
-      "salon_point": 244,
+      "province_id": widget.provinceID,
+      "district_id": widget.districtID,
+      "subdistrict_id": widget.subDistrictId,
+      "salon_zip_code": widget.zipCode,
+      "salon_credit_limited": 10000,
+      "salon_due_total": 0,
+      "salon_order_total": 0,
+      "salon_pay_total": 0,
+      "salon_point": 0,
       "salon_scope": 0,
       "salon_qty": 0,
       "salon_last_order": "2021-04-05T10:42:33.000Z",
@@ -116,20 +118,39 @@ class _RegisterState extends State<Register> {
       "salon_latitude": "13.788605",
       "salon_open_time": null,
       "salon_close_time": null,
-      "salon_status": 1,
+      "salon_status": 0,
       "salon_hot": 0,
       "salon_on_website": 0,
       "salon_token_line": "XfbVUJs8Oyu7SXoXAhD7wX5mposNAi1ed0n7JkoHIbR",
       "salon_persuader": null,
       "created_by": 1,
-      "updated_by": 1
+      "updated_by": 1,
+      "salon_gen":0
     };
+    // var response = await dio.post(
+    //   pathUrl,
+    //   data: userData,
+    //   options:
+    //   Options(headers: {
+    //     'Content-type': 'application/json',
+    //   }
     var response = await dio.post(pathUrl,
         data: userData,
         options: Options(headers: {
           'Content-type': 'application/json',
         }));
-    return response.data;
+    if (response.statusCode == 200) {
+      // print(response.data);
+      return response.data;
+    }
+    if (response.statusCode == 500) {
+      print("status code 500");
+    } else {
+      print("dsdsdsdsfsf");
+    }
+
+    //show error message
+    // response.statusCode == 500 ;
   }
 
   String _password, _confirmPassword, _username;
@@ -172,6 +193,8 @@ class _RegisterState extends State<Register> {
     alleyController.text = widget.alley;
 
     var usernameField = TextFormField(
+        autofocus: true,
+        // initialValue: widget.phoneNumber,
         validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
         controller: usernameController,
         onSaved: (value) => _username = value,
@@ -190,7 +213,7 @@ class _RegisterState extends State<Register> {
         ));
 
     final passwordField = TextFormField(
-        autofocus: false,
+        autofocus: true,
         obscureText: true,
         controller: passwordContorller,
         validator: (value) => value.isEmpty ? "Please enter password" : null,
@@ -214,7 +237,7 @@ class _RegisterState extends State<Register> {
     // );
 
     final salonsName = TextFormField(
-        autofocus: false,
+        autofocus: true,
         controller: nameController,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
@@ -227,7 +250,7 @@ class _RegisterState extends State<Register> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ));
     final salonsLastName = TextFormField(
-        autofocus: false,
+        autofocus: true,
         controller: lastNameController,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
@@ -241,7 +264,7 @@ class _RegisterState extends State<Register> {
         ));
     final salonsNickName = TextFormField(
         controller: nickNameController,
-        autofocus: false,
+        autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.salonNickName,
@@ -254,7 +277,7 @@ class _RegisterState extends State<Register> {
         ));
     final salonsStoreName = TextFormField(
         controller: storeNameController,
-        autofocus: false,
+        autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.salonStoreName,
@@ -267,7 +290,7 @@ class _RegisterState extends State<Register> {
         ));
     final email = TextFormField(
         controller: emailController,
-        autofocus: false,
+        autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.email,
@@ -280,7 +303,7 @@ class _RegisterState extends State<Register> {
         ));
     final address = TextFormField(
         controller: addressController,
-        autofocus: false,
+        autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.address,
@@ -293,7 +316,7 @@ class _RegisterState extends State<Register> {
         ));
     final village = TextFormField(
         controller: villageController,
-        autofocus: false,
+        autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.village,
@@ -306,7 +329,7 @@ class _RegisterState extends State<Register> {
         ));
     final alley = TextFormField(
         controller: alleyController,
-        autofocus: false,
+        autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.alley,
@@ -319,7 +342,7 @@ class _RegisterState extends State<Register> {
         ));
     final road = TextFormField(
         controller: roadController,
-        autofocus: false,
+        autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.road,
@@ -331,7 +354,7 @@ class _RegisterState extends State<Register> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ));
     final country_id = TextFormField(
-      autofocus: false,
+      autofocus: true,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
       decoration: buildInputDecoration("", Icons.map),
       initialValue: "ประเทศไทย",
@@ -458,90 +481,101 @@ class _RegisterState extends State<Register> {
                   label("ประเทศ"),
                   SizedBox(height: 10.0),
                   country_id,
+                  SizedBox(height: 10.0),
+                  label("กรุณาระบุรายละเอียดที่อยู่"),
                   SizedBox(height: 5.0),
-                  Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                  TextFormField(
+                    readOnly: true,
+                    initialValue: widget.province,
+                    validator: (val) => val.isEmpty ? "ระบุจังหวัด" : null,
+                    decoration: InputDecoration(
+                      hintText: "แตะเพื่อเลือกจังหวัด",
+                      prefixIcon: Icon(
+                        Icons.pin_drop,
+                        color: HexColor('#36803a'),
                       ),
-                      child: ListTile(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        horizontalTitleGap: 0,
-                        minVerticalPadding: 5,
-                        leading: Text('จังหวัด  ',
-                            style: GoogleFonts.kanit(
-                                fontSize: 16, fontWeight: FontWeight.w400)),
-                        title:
-                            Text(widget.province, style: GoogleFonts.kanit()),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          var addressPush = new MaterialPageRoute(
-                            builder: (BuildContext contex) => ProvincesListView(
-                              phoneNumber: usernameController.text,
-                              password: passwordContorller.text,
-                              // confirmPassword: confirmPassword,
-                              salonName: nameController.text,
-                              sloneLastName: lastNameController.text,
-                              salonNickName: nickNameController.text,
-                              salonStoreName: storeNameController.text,
-                              email: emailController.text,
-                              address: addressController.text,
-                              village: villageController.text,
-                              alley: alleyController.text,
-                              road: roadController.text,
-                              countryID: country_id,
-                              salonImg: salonImg,
-                            ),
-                          );
-                          Navigator.of(context).push(addressPush);
-                        },
-                      )),
+                      contentPadding:
+                          EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    style: GoogleFonts.kanit(),
+                    onTap: () {
+                      var addressPush = new MaterialPageRoute(
+                        builder: (BuildContext contex) => ProvincesListView(
+                          phoneNumber: usernameController.text,
+                          password: passwordContorller.text,
+                          // confirmPassword: confirmPassword,
+                          salonName: nameController.text,
+                          sloneLastName: lastNameController.text,
+                          salonNickName: nickNameController.text,
+                          salonStoreName: storeNameController.text,
+                          email: emailController.text,
+                          address: addressController.text,
+                          village: villageController.text,
+                          alley: alleyController.text,
+                          road: roadController.text,
+                          countryID: country_id,
+                          salonImg: salonImg,
+                        ),
+                      );
+                      Navigator.of(context).push(addressPush);
+                    },
+                  ),
                   SizedBox(height: 5.0),
-                  Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                  TextFormField(
+                    readOnly: true,
+                    initialValue: widget.districtName,
+                    validator: (val) => val.isEmpty ? "no data" : null,
+                    decoration: InputDecoration(
+                      hintText: "อำเภอ",
+                      prefixIcon: Icon(
+                        Icons.pin_drop,
+                        color: HexColor('#36803a'),
                       ),
-                      child: ListTile(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        horizontalTitleGap: 0,
-                        minVerticalPadding: 5,
-                        leading: Text('อำเภอ  ',
-                            style: GoogleFonts.kanit(
-                                fontSize: 16, fontWeight: FontWeight.w400)),
-                        title: Text(widget.districtName,
-                            style: GoogleFonts.kanit()),
-                        onTap: () {},
-                      )),
+                      contentPadding:
+                          EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    style: GoogleFonts.kanit(),
+                  ),
                   SizedBox(height: 5.0),
-                  Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                  TextFormField(
+                    readOnly: true,
+                    initialValue: widget.subDistrictName,
+                    validator: (val) => val.isEmpty ? "no data" : null,
+                    decoration: InputDecoration(
+                      hintText: "ตำบล",
+                      prefixIcon: Icon(
+                        Icons.pin_drop,
+                        color: HexColor('#36803a'),
                       ),
-                      child: ListTile(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        horizontalTitleGap: 0,
-                        minVerticalPadding: 5,
-                        leading: Text('ตำบล/เขต  ',
-                            style: GoogleFonts.kanit(
-                                fontSize: 16, fontWeight: FontWeight.w400)),
-                        title: Text(widget.subDistrictName,
-                            style: GoogleFonts.kanit()),
-                        onTap: () {},
-                      )),
+                      contentPadding:
+                          EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    style: GoogleFonts.kanit(),
+                  ),
                   SizedBox(height: 5.0),
-                  Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                  TextFormField(
+                    readOnly: true,
+                    initialValue: widget.zipCode,
+                    validator: (val) => val.isEmpty ? "no data" : null,
+                    decoration: InputDecoration(
+                      hintText: "รหัสไปรษณีย์",
+                      prefixIcon: Icon(
+                        Icons.pin_drop,
+                        color: HexColor('#36803a'),
                       ),
-                      child: ListTile(
-                        contentPadding: EdgeInsets.only(left: 10),
-                        horizontalTitleGap: 0,
-                        minVerticalPadding: 5,
-                        leading: Text('รหัสไปรษณีย์  ',
-                            style: GoogleFonts.kanit(
-                                fontSize: 16, fontWeight: FontWeight.w400)),
-                        title: Text(widget.zipCode, style: GoogleFonts.kanit()),
-                        onTap: () {},
-                      )),
+                      contentPadding:
+                          EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    style: GoogleFonts.kanit(),
+                  ),
                   SizedBox(height: 10.0),
                   SizedBox(height: 10.0),
                   label("รูปหน้าร้าน"),
@@ -559,20 +593,28 @@ class _RegisterState extends State<Register> {
                         if (formKey.currentState.validate())
                           await postRegister().then((value) {
                             print(value);
-                             var registerSuccess = new MaterialPageRoute(
-                            builder: (BuildContext contex) => RegisterSuccess(
-                             
-                            ),
-                          );
-                          Navigator.of(context).push(registerSuccess);
+                            var registerSuccess = new MaterialPageRoute(
+                              builder: (BuildContext contex) =>
+                                  RegisterSuccess(),
+                            );
+                            Navigator.of(context).push(registerSuccess);
                           });
-                      
-                      } ,
+                        print(' province  ' +
+                            widget.provinceID.toString() +
+                            '  distric id ' +
+                            widget.districtID.toString() +
+                            '  sub id  ' +
+                            widget.subDistrictId.toString() +
+                            '  zipcode ' +
+                            widget.zipCode);
+                      },
+                      //     {
+
+                      // },
                       child: Text(
                         "ตกลง",
                         style: GoogleFonts.kanit(color: Colors.white),
                       ),
-                    
                     ),
                   ),
 

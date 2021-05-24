@@ -114,7 +114,10 @@ class SubDistrict extends State<SubDistrictListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('เลือกตำบล/เขต'),
+        title: Text(
+          'เลือกตำบล/เขต',
+          style: GoogleFonts.kanit(),
+        ),
         backgroundColor: HexColor('#36803a'),
       ),
       body: FutureBuilder<List<GetSubDistrict>>(
@@ -134,8 +137,9 @@ class SubDistrict extends State<SubDistrictListView> {
                     onTap: () {
                       var province = new MaterialPageRoute(
                         builder: (BuildContext contex) => Register(
+                          provinceID: widget.provinceID,
                           subDistrictName: user.dName,
-                          districtName:widget.districtName,
+                          districtName: widget.districtName,
                           province: widget.province,
                           phoneNumber: widget.phoneNumber,
                           password: widget.password,
@@ -150,8 +154,8 @@ class SubDistrict extends State<SubDistrictListView> {
                           alley: widget.alley,
                           road: widget.road,
                           countryID: widget.countryID,
-                          // districtID: ,
-                          // subDistrictId: ,
+                          districtID: widget.districtID,
+                          subDistrictId: user.id,
                           zipCode: user.dNumber,
                           salonImg: widget.salonImg,
                         ),

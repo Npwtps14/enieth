@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:enie_production/screens/address/district_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icon.dart';
@@ -109,7 +110,7 @@ class Provinces extends State<ProvincesListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('เลือกจังหวัด'),
+        title: Text('เลือกจังหวัด',style: GoogleFonts.kanit(),),
         backgroundColor: HexColor('#36803a'),
       ),
       body: Container(
@@ -123,7 +124,7 @@ class Provinces extends State<ProvincesListView> {
               children: snapshot.data
                   .map(
                     (dataProvince) => ListTile(
-                      title: Text(dataProvince.province),
+                      title: Text(dataProvince.province,style: GoogleFonts.kanit(),),
                       onTap: () {
                         var province = new MaterialPageRoute(
                           builder: (BuildContext contex) => DistrictsListView(
