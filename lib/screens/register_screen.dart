@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:enie_production/screens/address/provinces_screen.dart';
 import 'package:enie_production/screens/login_screen.dart';
@@ -10,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -66,6 +70,8 @@ SharedPreferences prefs;
 
 class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
+  File _image;
+  final picker = ImagePicker();
   var dio = Dio();
   Future postRegister() async {
     final String pathUrl = 'https://app1.fantasy.co.th/salons';
@@ -125,15 +131,9 @@ class _RegisterState extends State<Register> {
       "salon_persuader": null,
       "created_by": 1,
       "updated_by": 1,
-      "salon_gen":0
+      "salon_gen": 0
     };
-    // var response = await dio.post(
-    //   pathUrl,
-    //   data: userData,
-    //   options:
-    //   Options(headers: {
-    //     'Content-type': 'application/json',
-    //   }
+
     var response = await dio.post(pathUrl,
         data: userData,
         options: Options(headers: {
@@ -153,11 +153,15 @@ class _RegisterState extends State<Register> {
     // response.statusCode == 500 ;
   }
 
-  String _password, _confirmPassword, _username;
-  // TextEditingController _usernameController =
+  Future pickImg() async {
+    var pickedImg = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      _image = File(pickedImg.path);
+    });
+  }
 
-  // var usernameController = TextEditingController();
-  final phoneNumberController = TextEditingController();
+  String _password, _confirmPassword, _username;
+
   @override
   Widget build(BuildContext context) {
     AuthProvider auth = Provider.of<AuthProvider>(context);
@@ -363,20 +367,22 @@ class _RegisterState extends State<Register> {
       child: RaisedButton(
         color: Colors.blueAccent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        onPressed: () {},
+        onPressed: () {
+          pickImg();
+        },
         child: Text(
           "เลือกรูปภาพ",
           style: GoogleFonts.kanit(color: Colors.white),
         ),
       ),
     );
-    var loading = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        CircularProgressIndicator(),
-        Text(" Registering ... Please wait")
-      ],
-    );
+    // var loading = Row(
+    //   mainAxisAlignment: MainAxisAlignment.center,
+    //   children: <Widget>[
+    //     CircularProgressIndicator(),
+    //     Text(" Registering ... Please wait")
+    //   ],
+    // );
     final backtologinLabel = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -608,9 +614,6 @@ class _RegisterState extends State<Register> {
                             '  zipcode ' +
                             widget.zipCode);
                       },
-                      //     {
-
-                      // },
                       child: Text(
                         "ตกลง",
                         style: GoogleFonts.kanit(color: Colors.white),
