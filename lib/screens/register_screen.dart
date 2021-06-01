@@ -1,14 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:enie_production/screens/address/provinces_screen.dart';
 import 'package:enie_production/screens/login_screen.dart';
 import 'package:enie_production/services/auth_service.dart';
-import 'package:enie_production/services/user_provider.dart';
 import 'package:enie_production/widgets/login_btn.dart';
 import 'package:enie_production/widgets/register_success.dart';
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -70,34 +67,39 @@ SharedPreferences prefs;
 
 class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
-  File _image;
   final picker = ImagePicker();
+  File file;
   var dio = Dio();
-  Future postRegister() async {
-    final String pathUrl = 'https://app1.fantasy.co.th/salons';
 
-    dynamic userData = {
+  Future postRegister() async {
+    // String imageFileName = file.path.split("/").last;
+    // List<int> imageBytes =  file.readAsBytesSync();
+    // String  base64Image = base64Encode(imageBytes);
+    final image = file.readAsBytesSync();
+    String base64Img = base64Encode(image);
+
+    // var x = base64Img.s;
+    final String pathUrl = 'https://app1.fantasy.co.th/salons';
+    var userData = {
+      "salon_main_picture": base64Img.trim().toString(),
       "salon_id_card": null,
       "username": widget.phoneNumber,
       "email": widget.email,
       "email_verified_at": null,
       "password": widget.password,
-      "remember_token":
-          "7dT7d876PSXFkpDUPB3UI9wazHWldrOl9yqWaB7usLhgSBn4iK5iSvQOECx5",
+      "remember_token": "-",
       "sale_id": 12,
       "salon_type": 1,
-      "salon_contract_name": "James",
+      "salon_contract_name":
+          "${widget.salonName + "  " + widget.sloneLastName}",
       "salon_web_code": null,
-      "salon_first_name": "-",
-      "salon_last_name": "-",
-      "salon_nick_name": "-",
-      "salon_name": "บริษัท โมเดิร์น แฟนตาซี จำกัด",
-      "salon_phone": "089-1229962",
-      "salon_phone2": "02-91719412",
-      "salon_address": "66 ซอย ราษฎร์พัฒนา 1",
-      "salon_village": null,
-      "salon_alley": null,
-      "salon_road": "ราษฎร์พัฒนา 1",
+      "salon_name": widget.salonStoreName,
+      "salon_phone": widget.phoneNumber,
+      "salon_phone2": "-",
+      "salon_address": widget.address,
+      "salon_village": widget.village,
+      "salon_alley": widget.alley,
+      "salon_road": widget.road,
       "country_id": 1,
       "province_id": widget.provinceID,
       "district_id": widget.districtID,
@@ -110,26 +112,25 @@ class _RegisterState extends State<Register> {
       "salon_point": 0,
       "salon_scope": 0,
       "salon_qty": 0,
-      "salon_last_order": "2021-04-05T10:42:33.000Z",
+      "salon_last_order": null,
       "salon_avatar": null,
-      "salon_logo": "20201110101942-v3RnM6k1YU.png",
-      "salon_main_picture": "20201110101943-ugGDwxbOaS.png",
-      "salon_slogan": "ENIE ครบเครื่องเรื่องเส้นผม",
-      "salon_keyword": "like",
-      "salon_line_id": "0891229962",
+      "salon_logo": "-",
+      "salon_slogan": "-",
+      "salon_keyword": null,
+      "salon_line_id": null,
       "salon_facebook": null,
       "salon_ig": null,
       "salon_youtube": null,
-      "salon_url": "https://salon499.com/",
-      "salon_latitude": "13.788605",
+      "salon_url": "-",
+      "salon_latitude": "-",
       "salon_open_time": null,
       "salon_close_time": null,
       "salon_status": 0,
       "salon_hot": 0,
       "salon_on_website": 0,
-      "salon_token_line": "XfbVUJs8Oyu7SXoXAhD7wX5mposNAi1ed0n7JkoHIbR",
+      "salon_token_line": null,
       "salon_persuader": null,
-      "created_by": 1,
+      "created_by": 0,
       "updated_by": 1,
       "salon_gen": 0
     };
@@ -140,23 +141,22 @@ class _RegisterState extends State<Register> {
           'Content-type': 'application/json',
         }));
     if (response.statusCode == 200) {
-      // print(response.data);
       return response.data;
     }
     if (response.statusCode == 500) {
       print("status code 500");
     } else {
-      print("dsdsdsdsfsf");
+      print('base 64 img = $base64Img ');
     }
 
-    //show error message
+    // show error message
     // response.statusCode == 500 ;
   }
 
   Future pickImg() async {
     var pickedImg = await picker.getImage(source: ImageSource.gallery);
     setState(() {
-      _image = File(pickedImg.path);
+      file = File(pickedImg.path);
     });
   }
 
@@ -197,7 +197,7 @@ class _RegisterState extends State<Register> {
     alleyController.text = widget.alley;
 
     var usernameField = TextFormField(
-        autofocus: true,
+        // autofocus: true,
         // initialValue: widget.phoneNumber,
         validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
         controller: usernameController,
@@ -217,7 +217,7 @@ class _RegisterState extends State<Register> {
         ));
 
     final passwordField = TextFormField(
-        autofocus: true,
+        // autofocus: true,
         obscureText: true,
         controller: passwordContorller,
         validator: (value) => value.isEmpty ? "Please enter password" : null,
@@ -241,7 +241,7 @@ class _RegisterState extends State<Register> {
     // );
 
     final salonsName = TextFormField(
-        autofocus: true,
+        // autofocus: true,
         controller: nameController,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
@@ -254,7 +254,7 @@ class _RegisterState extends State<Register> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ));
     final salonsLastName = TextFormField(
-        autofocus: true,
+        // autofocus: true,
         controller: lastNameController,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
@@ -268,7 +268,7 @@ class _RegisterState extends State<Register> {
         ));
     final salonsNickName = TextFormField(
         controller: nickNameController,
-        autofocus: true,
+        // autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.salonNickName,
@@ -281,7 +281,7 @@ class _RegisterState extends State<Register> {
         ));
     final salonsStoreName = TextFormField(
         controller: storeNameController,
-        autofocus: true,
+        // autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.salonStoreName,
@@ -294,7 +294,7 @@ class _RegisterState extends State<Register> {
         ));
     final email = TextFormField(
         controller: emailController,
-        autofocus: true,
+        // autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.email,
@@ -307,7 +307,7 @@ class _RegisterState extends State<Register> {
         ));
     final address = TextFormField(
         controller: addressController,
-        autofocus: true,
+        // autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.address,
@@ -320,7 +320,7 @@ class _RegisterState extends State<Register> {
         ));
     final village = TextFormField(
         controller: villageController,
-        autofocus: true,
+        // autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.village,
@@ -333,7 +333,7 @@ class _RegisterState extends State<Register> {
         ));
     final alley = TextFormField(
         controller: alleyController,
-        autofocus: true,
+        // autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.alley,
@@ -346,7 +346,7 @@ class _RegisterState extends State<Register> {
         ));
     final road = TextFormField(
         controller: roadController,
-        autofocus: true,
+        // autofocus: true,
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.road,
@@ -358,7 +358,8 @@ class _RegisterState extends State<Register> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ));
     final country_id = TextFormField(
-      autofocus: true,
+      readOnly: true,
+      // autofocus: true,
       validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
       decoration: buildInputDecoration("", Icons.map),
       initialValue: "ประเทศไทย",
@@ -368,6 +369,7 @@ class _RegisterState extends State<Register> {
         color: Colors.blueAccent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         onPressed: () {
+          // if (formKey.currentState.validate())
           pickImg();
         },
         child: Text(
@@ -522,7 +524,6 @@ class _RegisterState extends State<Register> {
                           alley: alleyController.text,
                           road: roadController.text,
                           countryID: country_id,
-                          salonImg: salonImg,
                         ),
                       );
                       Navigator.of(context).push(addressPush);
@@ -585,6 +586,24 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 10.0),
                   SizedBox(height: 10.0),
                   label("รูปหน้าร้าน"),
+                  Card(
+                    child: Container(
+                      height: 300,
+                      width: double.infinity,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: file == null
+                          ? Center(child: Text('เลือกรูปภาพหน้าร้าน'))
+                          : Image.file(
+                              file,
+                              width: 300,
+                              height: 150,
+                              fit: BoxFit.fitHeight,
+                            ),
+                    ),
+                  ),
                   SizedBox(height: 10.0),
                   salonImg,
                   SizedBox(height: 20.0),
@@ -595,6 +614,10 @@ class _RegisterState extends State<Register> {
                       color: Colors.green,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
+                      // onPressed: () {
+                      //   print('');
+                      // },
+
                       onPressed: () async {
                         if (formKey.currentState.validate())
                           await postRegister().then((value) {
@@ -605,22 +628,13 @@ class _RegisterState extends State<Register> {
                             );
                             Navigator.of(context).push(registerSuccess);
                           });
-                        print(' province  ' +
-                            widget.provinceID.toString() +
-                            '  distric id ' +
-                            widget.districtID.toString() +
-                            '  sub id  ' +
-                            widget.subDistrictId.toString() +
-                            '  zipcode ' +
-                            widget.zipCode);
                       },
                       child: Text(
-                        "ตกลง",
+                        "สมัครสมาชิก",
                         style: GoogleFonts.kanit(color: Colors.white),
                       ),
                     ),
                   ),
-
                   SizedBox(height: 10.0),
                   backtologinLabel,
                   SizedBox(height: 360.0),

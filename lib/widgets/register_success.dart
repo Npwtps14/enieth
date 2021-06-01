@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:enie_production/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 
 class RegisterSuccess extends StatelessWidget {
   @override
@@ -10,7 +15,6 @@ class RegisterSuccess extends StatelessWidget {
     return MaterialApp(
       title: appTitle,
       home: Scaffold(
-
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(appTitle),
@@ -29,37 +33,49 @@ class MyCustomForm extends StatefulWidget {
   }
 }
 
-// Create a corresponding State class.
-// This class holds data related to the form.
 class MyCustomFormState extends State<MyCustomForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
+//   final String phpEndPoint = 'http://192.168.43.171/phpAPI/image.php';
+// final String nodeEndPoint = 'http://192.168.43.171:3000/image';
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Center(
-      child: RaisedButton(
-        color: Colors.green,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      onPressed: ()  {
-                        var registerSuccess = new MaterialPageRoute(
-                            builder: (BuildContext contex) => Login(
-                             
-                            ),
-                          );
-                          Navigator.of(context).push(registerSuccess);
-                      
-                      },
-                      child: Text(
-                        "ลงทะเบียนสำเร็จ",
-                        style: GoogleFonts.kanit(color: Colors.white),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Card(
+                  child: Container(
+                      height: 300,
+                      width: double.infinity,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
                       ),
+                      child: Center(child: Text('รอการติดต่อกลับจากเจ้าหน้าที่',style: GoogleFonts.kanit())),)
+                ),
+                RaisedButton(
+                  color: Colors.green,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  onPressed: () {                                                                                                                                                                                                                         
+                    var registerSuccess = new MaterialPageRoute(
+                      builder: (BuildContext contex) => Login(),
+                    );
+                    Navigator.of(context).push(registerSuccess);
+                  },
+                  child: Text(
+                    "ตกลง",
+                    style: GoogleFonts.kanit(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
