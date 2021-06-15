@@ -92,10 +92,8 @@ class Provinces extends State<ProvincesListView> {
   Future<List<GetProvinces>> _getProvinceList() async {
     var url = Uri.parse('https://app1.fantasy.co.th/provinces');
     var response = await http.get(url);
-
     if (response.statusCode == 200) {
       final jsonItems = json.decode(response.body).cast<Map<String, dynamic>>();
-
       List<GetProvinces> provinceList = jsonItems.map<GetProvinces>((json) {
         return GetProvinces.fromJson(json);
       }).toList();
@@ -119,7 +117,6 @@ class Provinces extends State<ProvincesListView> {
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Center(child: CircularProgressIndicator());
-
             return ListView(
               children: snapshot.data
                   .map(
@@ -142,10 +139,7 @@ class Provinces extends State<ProvincesListView> {
                             village: widget.village,
                             alleyname: widget.alley,
                             road: widget.road,
-                            // countryID: widget.countryID,
-                            // subDistrictId: ,
-                            // zipCode: ,
-                            // salonImg: widget.salonImg,
+                           
                           ),
                         );
 

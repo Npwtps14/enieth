@@ -11,52 +11,13 @@ import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
-// class LoginScreen extends StatelessWidget {
-// gotoNextActivity(BuildContext context) {
-//   Navigator.push(
-//     context,
-//     MaterialPageRoute(builder: (context) => NavBar()),
-//   );
-// }
-
-// gotoRegister(BuildContext context) {
-//   Navigator.push(
-//     context,
-//     MaterialPageRoute(builder: (context) => Register()),
-//   );
-// }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Login Page'),
-//       ),
-//       body: Center(
-//         child: RaisedButton(
-//             child: Text('Login'),
-//             color: Colors.green,
-//             textColor: Colors.white,
-//             onPressed: () {
-//               gotoNextActivity(context);
-//             }),
-
-//       ),
-
-//     );
-//   }
-// }
-
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
-
 class _LoginState extends State<Login> {
   final formKey = new GlobalKey<FormState>();
-
   String _username, _password;
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -196,7 +157,6 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
 //incase for bypass login
   void gotoInApp(BuildContext context) {
     Navigator.push(

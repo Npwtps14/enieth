@@ -169,7 +169,6 @@ class _RegisterState extends State<Register> {
     TextEditingController passwordContorller = TextEditingController();
     TextEditingController nameController = TextEditingController();
     TextEditingController lastNameController = TextEditingController();
-    TextEditingController nickNameController = TextEditingController();
     TextEditingController storeNameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController addressController = TextEditingController();
@@ -188,7 +187,6 @@ class _RegisterState extends State<Register> {
     passwordContorller.text = widget.password;
     nameController.text = widget.salonName;
     lastNameController.text = widget.sloneLastName;
-    nickNameController.text = widget.salonNickName;
     storeNameController.text = widget.salonStoreName;
     emailController.text = widget.email;
     addressController.text = widget.address;
@@ -259,19 +257,6 @@ class _RegisterState extends State<Register> {
         validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
         decoration: InputDecoration(
           hintText: widget.sloneLastName,
-          prefixIcon: Icon(
-            Icons.person,
-            color: HexColor('#36803a'),
-          ),
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-        ));
-    final salonsNickName = TextFormField(
-        controller: nickNameController,
-        // autofocus: true,
-        validator: (val) => val.isEmpty ? "กรุณากรอกข้อมูลให้ครบถ้วน" : null,
-        decoration: InputDecoration(
-          hintText: widget.salonNickName,
           prefixIcon: Icon(
             Icons.person,
             color: HexColor('#36803a'),
@@ -378,13 +363,7 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
-    // var loading = Row(
-    //   mainAxisAlignment: MainAxisAlignment.center,
-    //   children: <Widget>[
-    //     CircularProgressIndicator(),
-    //     Text(" Registering ... Please wait")
-    //   ],
-    // );
+    
     final backtologinLabel = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -398,7 +377,6 @@ class _RegisterState extends State<Register> {
         ),
       ],
     );
-
     return WillPopScope(
       onWillPop: () {
         return new Future(() => false);
@@ -458,10 +436,6 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 10.0),
                   salonsLastName,
                   SizedBox(height: 10.0),
-                  label("ชื่อเล่น"),
-                  SizedBox(height: 10.0),
-                  salonsNickName,
-                  SizedBox(height: 10.0),
                   label("ชื่อร้าน"),
                   SizedBox(height: 10.0),
                   salonsStoreName,
@@ -516,7 +490,6 @@ class _RegisterState extends State<Register> {
                           // confirmPassword: confirmPassword,
                           salonName: nameController.text,
                           sloneLastName: lastNameController.text,
-                          salonNickName: nickNameController.text,
                           salonStoreName: storeNameController.text,
                           email: emailController.text,
                           address: addressController.text,
