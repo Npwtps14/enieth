@@ -154,7 +154,7 @@ class CartPageState extends State<CartPage> {
                               child: Card(
                                 child: ListTile(
                                   leading: Image.network(
-                                   'https://office.enie.co.th/images/product/800/'+_apiResponse.body[index].product_img,
+                                   _apiResponse.body[index].product_img,
                                     fit: BoxFit.cover,
                                   ),
                                   title: Text(
