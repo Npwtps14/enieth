@@ -14,6 +14,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'cart_screen.dart';
+
 class Register extends StatefulWidget {
   final subDistrictName;
   final province;
@@ -164,7 +166,6 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider auth = Provider.of<AuthProvider>(context);
     TextEditingController usernameController = TextEditingController();
     TextEditingController passwordContorller = TextEditingController();
     TextEditingController nameController = TextEditingController();
