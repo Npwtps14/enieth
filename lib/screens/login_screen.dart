@@ -21,15 +21,16 @@ class _LoginState extends State<Login> {
   String _username, _password;
   @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    AuthProvider auth = Provider.of<AuthProvider>(context);
 
     var usernameField = TextFormField(
         validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
         keyboardType: TextInputType.phone,
-        // controller: usernameController,
+        controller: usernameController,
         inputFormatters: [
           LengthLimitingTextInputFormatter(10),
         ],
@@ -44,7 +45,9 @@ class _LoginState extends State<Login> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ));
 
+
     final passwordField = TextFormField(
+      controller: passwordController,
       autofocus: false,
       obscureText: true,
       validator: (value) => value.isEmpty ? "Please enter password" : null,
@@ -52,13 +55,13 @@ class _LoginState extends State<Login> {
       decoration: buildInputDecoration("Confirm password", Icons.lock),
     );
 
-    var loading = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        CircularProgressIndicator(),
-        Text(" Authenticating ... Please wait")
-      ],
-    );
+    // var loading = Row(
+    //   mainAxisAlignment: MainAxisAlignment.center,
+    //   children: <Widget>[
+    //     CircularProgressIndicator(),
+    //     Text(" Authenticating ... Please wait")
+    //   ],
+    // );
 
     final forgotLabel = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,42 +79,13 @@ class _LoginState extends State<Login> {
           padding: EdgeInsets.only(left: 0.0),
           child: Text("Sign up", style: TextStyle(fontWeight: FontWeight.w300)),
           onPressed: () {
-            var registerSuccess = new MaterialPageRoute(
-              builder: (BuildContext contex) => Register(),
-            );
-            Navigator.of(context).push(registerSuccess);
+            signUpPage(context);
           },
         ),
       ],
     );
 
-    var doLogin = () {
-      final form = formKey.currentState;
 
-      if (form.validate()) {
-        form.save();
-
-        final Future<Map<String, dynamic>> successfulMessage =
-            auth.login(_username, _password);
-
-        successfulMessage.then((response) {
-          if (response['status']) {
-            User user = response['user'];
-            Provider.of<UserProvider>(context, listen: false).setUser(user);
-            // Navigator.pushReplacementNamed(context, '/dashboard');
-            gotoInApp(context);
-          } else {
-            Flushbar(
-              title: "Failed Login",
-              message: response['message']['message'].toString(),
-              duration: Duration(seconds: 3),
-            ).show(context);
-          }
-        });
-      } else {
-        print("form is invalid");
-      }
-    };
 
     return SafeArea(
       child: Scaffold(
@@ -129,10 +103,10 @@ class _LoginState extends State<Login> {
                 ),
                 Center(
                   child: Image.network(
-                      'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/logo%2Fenie_logo.png?alt=media&token=ab317673-0576-4557-8f1f-bbf0b8313e56',
-                      width: 200,
-                      height: 105,
-                      fit: BoxFit.fitHeight),
+                    'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/logo%2Fenie_logo.png?alt=media&token=ab317673-0576-4557-8f1f-bbf0b8313e56',
+                    width: 200,
+                    height: 105,
+                    fit: BoxFit.fitHeight),
                 ),
                 SizedBox(height: 20.0),
                 label("Phone Number"),
@@ -143,9 +117,9 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 10.0),
                 passwordField,
                 SizedBox(height: 20.0),
-                auth.loggedInStatus == Status.Authenticating
-                    ? loading
-                    : longButtons("Login", doLogin),
+                // auth.loggedInStatus == Status.Authenticating
+                //     ? loading
+                //     : longButtons("Login", doLogin),
                 SizedBox(height: 5.0),
                 forgotLabel,
               ],
@@ -161,6 +135,12 @@ class _LoginState extends State<Login> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => NavBar()),
+    );
+  }
+  void signUpPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Register()),
     );
   }
 }

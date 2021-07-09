@@ -5,16 +5,32 @@ import 'package:enie_production/screens/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'category_screen.dart';
+import 'login_screen.dart';
 
 class NavBar extends StatefulWidget {
   NavBar({Key key}) : super(key: key);
 
   @override
+
   NavBarState createState() => NavBarState();
 }
 
 class NavBarState extends State<NavBar> {
+  SharedPreferences sharedPreferences;
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getString("Token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Login()), (Route<dynamic> route) => false);
+    }
+  }
   int selectedIndex = 0;
   final widgetOptions = [
     new HomePage(),

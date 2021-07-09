@@ -5,9 +5,9 @@ class User {
   String phone;
   String type;
   String token;
-  String renewalToken;
+  // String renewalToken;
 
-  User({this.userId, this.name, this.email, this.phone, this.type, this.token, this.renewalToken});
+  User({this.userId, this.name, this.email, this.phone, this.type, this.token});
 
   factory User.fromJson(Map<String, dynamic> responseData) {
     return User(
@@ -16,8 +16,8 @@ class User {
         email: responseData['email'],
         phone: responseData['phone'],
         type: responseData['type'],
-        token: responseData['access_token'],
-        renewalToken: responseData['renewal_token']
+        token: responseData['access_token']
+        // renewalToken: responseData['renewal_token']
     );
   }
 }
