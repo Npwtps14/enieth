@@ -15,6 +15,7 @@ class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
+
 class _LoginState extends State<Login> {
   final formKey = new GlobalKey<FormState>();
   String _username, _password;
@@ -25,13 +26,13 @@ class _LoginState extends State<Login> {
     ]);
     AuthProvider auth = Provider.of<AuthProvider>(context);
 
-     var usernameField = TextFormField(
-        validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" :  null,
+    var usernameField = TextFormField(
+        validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
         keyboardType: TextInputType.phone,
         // controller: usernameController,
         inputFormatters: [
-        LengthLimitingTextInputFormatter(10),
-      ],
+          LengthLimitingTextInputFormatter(10),
+        ],
         // initialValue: widget.phoneNumber,
         decoration: InputDecoration(
           // hintText: widget.phoneNumber,
@@ -76,12 +77,9 @@ class _LoginState extends State<Login> {
           child: Text("Sign up", style: TextStyle(fontWeight: FontWeight.w300)),
           onPressed: () {
             var registerSuccess = new MaterialPageRoute(
-                            builder: (BuildContext contex) => Register(
-                             
-                            ),
-                          );
-                          Navigator.of(context).push(registerSuccess);
-                      
+              builder: (BuildContext contex) => Register(),
+            );
+            Navigator.of(context).push(registerSuccess);
           },
         ),
       ],
@@ -131,11 +129,11 @@ class _LoginState extends State<Login> {
                 ),
                 Center(
                   child: Image.network(
-                    'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/logo%2Fenie_logo.png?alt=media&token=ab317673-0576-4557-8f1f-bbf0b8313e56',
-                    width: 200,
-                    height: 105,
-                    fit: BoxFit.fitHeight),
-                ),      
+                      'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/logo%2Fenie_logo.png?alt=media&token=ab317673-0576-4557-8f1f-bbf0b8313e56',
+                      width: 200,
+                      height: 105,
+                      fit: BoxFit.fitHeight),
+                ),
                 SizedBox(height: 20.0),
                 label("Phone Number"),
                 SizedBox(height: 10.0),
@@ -157,6 +155,7 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
 //incase for bypass login
   void gotoInApp(BuildContext context) {
     Navigator.push(
