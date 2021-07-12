@@ -54,28 +54,22 @@ void main() {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   @override
-
   SharedPreferences sharedPreferences;
   Widget build(BuildContext context) {
     Future<User> getUserData() => UserPreferences().getUser();
-
-    return
-      MaterialApp(
-          title: 'Enie Store',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: FutureBuilder(
-              future: getUserData(),
-              builder: (context, snapshot) {
-                    return NavBar();
-                }
-              ),
-
+    return MaterialApp(
+      title: 'Enie Store',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: FutureBuilder(
+          future: getUserData(),
+          builder: (context, snapshot) {
+            return NavBar();
+          }),
     );
   }
 }
