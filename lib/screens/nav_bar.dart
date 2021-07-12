@@ -10,10 +10,12 @@ import 'category_screen.dart';
 import 'login_screen.dart';
 
 class NavBar extends StatefulWidget {
-  NavBar({Key key}) : super(key: key);
+  // NavBar({Key key, String username}) : super(key: key);
+  final username;
+
+  const NavBar({this.username});
 
   @override
-
   NavBarState createState() => NavBarState();
 }
 
@@ -27,10 +29,13 @@ class NavBarState extends State<NavBar> {
 
   checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.getString("Token") == null) {
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Login()), (Route<dynamic> route) => false);
+    if (sharedPreferences.getString("accessToken") == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (BuildContext context) => Login()),
+          (Route<dynamic> route) => false);
     }
   }
+
   int selectedIndex = 0;
   final widgetOptions = [
     new HomePage(),
