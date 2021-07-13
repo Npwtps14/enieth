@@ -33,17 +33,17 @@ class _UsersPageState extends State<UsersPage> {
       )
 
       
-      //  RaisedButton(
-      //     child: Text('Logout'),
-      //     color: Colors.redAccent,
-      //     textColor: Colors.white,
-      //     onPressed: () {
-      //       sharedPreferences.clear();
-      //       sharedPreferences.commit();
-      //       Navigator.of(context).pushAndRemoveUntil(
-      //           MaterialPageRoute(builder: (BuildContext context) => Login()),
-      //           (Route<dynamic> route) => false);
-      //     }),
+       RaisedButton(
+          child: Text('Logout'),
+          color: Colors.redAccent,
+          textColor: Colors.white,
+          onPressed: () {
+            sharedPreferences.clear();
+            sharedPreferences.commit();
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (BuildContext context) => Login()),
+                (Route<dynamic> route) => false);
+          }),
          
       )
 
