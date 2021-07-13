@@ -30,6 +30,8 @@ class _LoginState extends State<Login> {
   String _username, _password;
   @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -41,6 +43,7 @@ class _LoginState extends State<Login> {
         inputFormatters: [
           LengthLimitingTextInputFormatter(10),
         ],
+
         decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.phone,
@@ -49,6 +52,7 @@ class _LoginState extends State<Login> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ));
+
 
     final passwordField = TextFormField(
       controller: passwordController,
@@ -59,13 +63,13 @@ class _LoginState extends State<Login> {
       decoration: buildInputDecoration("Confirm password", Icons.lock),
     );
 
-    var loading = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        CircularProgressIndicator(),
-        Text(" Authenticating ... Please wait")
-      ],
-    );
+    // var loading = Row(
+    //   mainAxisAlignment: MainAxisAlignment.center,
+    //   children: <Widget>[
+    //     CircularProgressIndicator(),
+    //     Text(" Authenticating ... Please wait")
+    //   ],
+    // );
 
     final forgotLabel = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,6 +123,9 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 10.0),
                 passwordField,
                 SizedBox(height: 20.0),
+                // auth.loggedInStatus == Status.Authenticating
+                //     ? loading
+                //     : longButtons("Login", doLogin),
                 buttonSection(),
                 SizedBox(height: 5.0),
                 forgotLabel,
@@ -137,7 +144,6 @@ class _LoginState extends State<Login> {
       MaterialPageRoute(builder: (context) => NavBar()),
     );
   }
-
   void signUpPage(BuildContext context) {
     Navigator.push(
       context,
@@ -209,4 +215,5 @@ class _LoginState extends State<Login> {
 
   final TextEditingController usernameController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
+
 }

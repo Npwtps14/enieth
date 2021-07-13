@@ -59,9 +59,7 @@ class MyApp extends StatelessWidget {
   SharedPreferences sharedPreferences;
   Widget build(BuildContext context) {
     Future<User> getUserData() => UserPreferences().getUser();
-
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Enie Store',
       theme: ThemeData(
         primarySwatch: Colors.blue,

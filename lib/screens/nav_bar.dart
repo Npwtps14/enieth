@@ -16,6 +16,7 @@ class NavBar extends StatefulWidget {
   const NavBar({this.username});
 
   @override
+
   NavBarState createState() => NavBarState();
 }
 
@@ -35,6 +36,7 @@ class NavBarState extends State<NavBar> {
           (Route<dynamic> route) => false);
     }
   }
+
 
   int selectedIndex = 0;
   final widgetOptions = [
@@ -72,7 +74,6 @@ class NavBarState extends State<NavBar> {
                 // ignore: deprecated_member_use
                 icon: Icon(Icons.favorite),
                 title: Text('Promotion')),
-
             BottomNavigationBarItem(
                 // ignore: deprecated_member_use
                 icon: LineIcon(LineIcons.userCircle),
@@ -87,7 +88,6 @@ class NavBarState extends State<NavBar> {
       ),
     );
   }
-
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
