@@ -1,27 +1,48 @@
 import 'package:enie_production/screens/cart_screen.dart';
 import 'package:enie_production/screens/home_screen.dart';
-import 'package:enie_production/screens/products_screen.dart';
+import 'package:enie_production/screens/promotion.dart';
 import 'package:enie_production/screens/user_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'category_screen.dart';
+import 'login_screen.dart';
 
 class NavBar extends StatefulWidget {
-  NavBar({Key key}) : super(key: key);
+  // NavBar({Key key, String username}) : super(key: key);
+  final username;
+
+  const NavBar({this.username});
 
   @override
+
   NavBarState createState() => NavBarState();
 }
 
 class NavBarState extends State<NavBar> {
+  SharedPreferences sharedPreferences;
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString("accessToken") == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (BuildContext context) => Login()),
+          (Route<dynamic> route) => false);
+    }
+  }
+
+
   int selectedIndex = 0;
   final widgetOptions = [
     new HomePage(),
     new CategoryPage(),
-    new CartPage(),
+    new PromotionPage(),
     new UsersPage()
   ];
 
@@ -51,9 +72,8 @@ class NavBarState extends State<NavBar> {
                 title: Text('Shop')),
             BottomNavigationBarItem(
                 // ignore: deprecated_member_use
-                icon: LineIcon(LineIcons.shoppingCart),
-                title: Text('Cart')),
-
+                icon: Icon(Icons.favorite),
+                title: Text('Promotion')),
             BottomNavigationBarItem(
                 // ignore: deprecated_member_use
                 icon: LineIcon(LineIcons.userCircle),
@@ -68,7 +88,6 @@ class NavBarState extends State<NavBar> {
       ),
     );
   }
-
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;

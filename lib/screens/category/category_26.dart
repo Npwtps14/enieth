@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:enie_production/controllers/productcontroller.dart';
+import 'package:enie_production/controllers/category_controllers/cate_id_10.dart';
+import 'package:enie_production/controllers/category_controllers/cate_id_20.dart';
+import 'package:enie_production/controllers/category_controllers/cate_id_26.dart';
+import 'package:enie_production/controllers/category_controllers/cate_id_4.dart';
+import 'package:enie_production/controllers/category_controllers/cate_id_8.dart';
 import 'package:enie_production/models/product.dart';
 import 'package:enie_production/screens/cart_screen.dart';
 import 'package:enie_production/screens/product_tile.dart';
@@ -11,40 +15,38 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rxdart/subjects.dart';
 
-class ProductsPage extends StatefulWidget {
+class Cate26 extends StatefulWidget {
   final cate;
   final cateId;
-  const ProductsPage({String this.cate, String this.cateId});
+  const Cate26({String this.cate, String this.cateId});
   @override
-  ProductsPageState createState() => new ProductsPageState();
+  Cate26State createState() => new Cate26State();
 }
 
-class ProductsPageState extends State<ProductsPage> {
+class Cate26State extends State<Cate26> {
   @override
-  final ProductController productController = Get.put(ProductController());
+  final CateId26Controller productController = Get.put(CateId26Controller());
 
   // final ProductsPage productsPage = ProductsPage().cateId;
 
-  // static get cateId => ProductsPage().cateId;
+  static get cateId => Cate26().cateId;
 
-  static var PATH = 1;
-
-  static Future<List<Product>> fetchProducts() async {
+  static Future<List<Product>> fetchCate26() async {
     @override
     var dio = Dio();
-    var id = PATH;
-    var cateId = id;
+    var id = 26;
+    // var cateId = id;
 
     //  id.widget.cateId;
 
     var response = await dio
         // ignore: unnecessary_brace_in_string_interps
         // 'https://api.enie.co.th/api/products'
-        .get('https://api.enie.co.th/api/products?categoryID=$cateId');
+
+        .get('https://app1.fantasy.co.th/products?product_category_id=$id&pd_status=1');
     if (response.statusCode == 200) {
-      print('value ${cateId}');
+      print('value ${id}');
       return (response.data as List).map((x) => Product.fromJson(x)).toList();
     } else {
       //show error message
@@ -60,10 +62,12 @@ class ProductsPageState extends State<ProductsPage> {
           return new Future(() => true);
         },
         child: Scaffold(
+                    backgroundColor: HexColor('#e0e0e0'),
+
           resizeToAvoidBottomInset: false, //remove warnning pixel
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            title: Text('สินค้า'),
+            title: Text('สินค้า', style: GoogleFonts.kanit()),
             backgroundColor: HexColor('#36803a'),
           ),
           body: Column(
@@ -98,8 +102,8 @@ class ProductsPageState extends State<ProductsPage> {
                     return StaggeredGridView.countBuilder(
                       crossAxisCount: 2,
                       itemCount: productController.productList.length,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
                       itemBuilder: (context, index) {
                         return ProductTile(
                             productController.productList[index]);

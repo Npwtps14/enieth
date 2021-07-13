@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 
-
 List<Product> productFromJson(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
@@ -37,7 +36,8 @@ class Product {
   final int productOwnerId;
   final int productSeriesId;
   var isFavorite = false.obs;
-  
+  var isAddCart = false.obs;
+  int counter = 0;
 
   Product({
     this.id,
@@ -74,16 +74,16 @@ class Product {
       id: json["id"] as int,
       pdBest: json["pd_best"] as int,
       pdCapacity:
-          json["pd_capacity"] == null ? null : json["pd_capacity"] as String,
+          json["pd_capacity"] ??='ไม่ระบุ',
       pdCode: json["pd_code"] == null ? null : json["pd_code"] as String,
       pdCom: json["pd_com"] as int,
       pdCost: json["pd_cost"] as int,
-      pdDetail: json["pd_detail"] == null ? null : json["pd_detail"],
+      pdDetail: json["pd_detail"] ??='Description Will be update soon',
       pdFlash: json["pd_flash"] as int,
       pdHot: json["pd_hot"] as int,
-      pdHowToUse: json["pd_how_to_use"] == null ? null : json["pd_how_to_use"],
+      pdHowToUse: json["pd_how_to_use"] ??= 'How to use will update soon',
       pdMainImage: json["pd_main_image"] ??=
-          'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/itemProduct%2Fimage-not-available.jpeg?alt=media&token=c652c858-2f61-47b0-8e54-60d077390ce5',
+          '20210517161104-oqWf2HDlmv.jpeg',
       pdMtStatus: json["pd_mt_status"] as int,
       pdNameEn: json["pd_name_en"] == null ? null : json["pd_name_en"],
       pdNameTh: json["pd_name_th"] as String,
