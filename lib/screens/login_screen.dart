@@ -28,22 +28,21 @@ class _LoginState extends State<Login> {
   bool _isLoading = false;
 
   String _username, _password;
+  final TextEditingController usernameController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController usernameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
 
     var usernameField = TextFormField(
         validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
-        keyboardType: TextInputType.phone,
+        // keyboardType: TextInputType.phone,
         controller: usernameController,
         inputFormatters: [
           LengthLimitingTextInputFormatter(10),
         ],
-
         decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.phone,
@@ -52,7 +51,6 @@ class _LoginState extends State<Login> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         ));
-
 
     final passwordField = TextFormField(
       controller: passwordController,
@@ -123,9 +121,6 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 10.0),
                 passwordField,
                 SizedBox(height: 20.0),
-                // auth.loggedInStatus == Status.Authenticating
-                //     ? loading
-                //     : longButtons("Login", doLogin),
                 buttonSection(),
                 SizedBox(height: 5.0),
                 forgotLabel,
@@ -138,19 +133,20 @@ class _LoginState extends State<Login> {
   }
 
 //incase for bypass login
-  void gotoInApp(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => NavBar()),
-    );
-  }
+  // void gotoInApp(BuildContext context) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => NavBar()),
+  //   );
+  // }
   void signUpPage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Register()),
     );
   }
-  void recoveryPassword (BuildContext context) {
+
+  void recoveryPassword(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => RecoveryPassword()),
@@ -172,17 +168,16 @@ class _LoginState extends State<Login> {
     );
     if (response.statusCode == 401) {
       print("dasadasdd");
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => RetryLogin()),
-  );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => RetryLogin()),
+      );
     } else {
       jsonResponse = json.decode(response.body);
       prefs.setString("accessToken", jsonResponse['accessToken']);
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => NavBar(
-            username : username
-          )),
+          MaterialPageRoute(
+              builder: (BuildContext context) => NavBar(username: username)),
           (Route<dynamic> route) => false);
       print(jsonResponse);
     }
@@ -212,8 +207,4 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
-  final TextEditingController usernameController = new TextEditingController();
-  final TextEditingController passwordController = new TextEditingController();
-
 }
