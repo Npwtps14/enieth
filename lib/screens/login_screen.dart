@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
 
     var usernameField = TextFormField(
         validator: (value) => value.isEmpty ? "กรุณากรอกหมายเลขโทรศัพท์" : null,
-        // keyboardType: TextInputType.phone,
+        keyboardType: TextInputType.phone,
         controller: usernameController,
         inputFormatters: [
           LengthLimitingTextInputFormatter(10),
@@ -167,7 +167,7 @@ class _LoginState extends State<Login> {
       body: data,
     );
     if (response.statusCode == 401) {
-      print("dasadasdd");
+      print("401");
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => RetryLogin()),
@@ -182,7 +182,6 @@ class _LoginState extends State<Login> {
       print(jsonResponse);
     }
   }
-
   Container buttonSection() {
     return Container(
       width: MediaQuery.of(context).size.width,

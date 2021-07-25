@@ -47,7 +47,7 @@ dependencies:
   overlay_support: ^1.2.1
   image_picker: ^0.7.5+2
   flutter_bloc: ^7.0.0
-
+ 
   # chopper_generator: ^3.0.0
 
 
