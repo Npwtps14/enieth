@@ -26,7 +26,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final formKey = new GlobalKey<FormState>();
   bool _isLoading = false;
-
+  void initState() {
+    super.initState();
+    userID();
+  }
   String _username, _password;
   final TextEditingController usernameController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
@@ -61,14 +64,6 @@ class _LoginState extends State<Login> {
       decoration: buildInputDecoration("Confirm password", Icons.lock),
     );
 
-    // var loading = Row(
-    //   mainAxisAlignment: MainAxisAlignment.center,
-    //   children: <Widget>[
-    //     CircularProgressIndicator(),
-    //     Text(" Authenticating ... Please wait")
-    //   ],
-    // );
-
     final forgotLabel = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -78,7 +73,6 @@ class _LoginState extends State<Login> {
               style: TextStyle(fontWeight: FontWeight.w300)),
           onPressed: () {
             recoveryPassword(context);
-//            Navigator.pushReplacementNamed(context, '/reset-password');
           },
         ),
         FlatButton(
@@ -131,37 +125,33 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
-//incase for bypass login
-  // void gotoInApp(BuildContext context) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => NavBar()),
-  //   );
-  // }
   void signUpPage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Register()),
     );
   }
-
   void recoveryPassword(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => RecoveryPassword()),
     );
   }
+  userID() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // setState(() {
+    //   usernameController.text = "adasdadad";
+    // });
+    prefs.setString('username', usernameController.text);
+    print(_username);
+  }
 
   signIn(String username, pass) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var data = {"strategy": "local", 'username': username, 'password': pass};
-    // Map<String, String> headers = {
-    //   'Content-type': 'application/json',
-    //   'Accept': 'application/json',
-    // };
-    // var dio = Dio();
+
     var jsonResponse = null;
+    var userID = username;
     final response = await http.post(
       Uri.parse("https://app1.fantasy.co.th/authentication"),
       body: data,
@@ -175,6 +165,7 @@ class _LoginState extends State<Login> {
     } else {
       jsonResponse = json.decode(response.body);
       prefs.setString("accessToken", jsonResponse['accessToken']);
+      // prefs.setString("userID", username);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
               builder: (BuildContext context) => NavBar(username: username)),
@@ -200,6 +191,7 @@ class _LoginState extends State<Login> {
                       _isLoading = true;
                     });
                     signIn(usernameController.text, passwordController.text);
+                    userID();
                   },
         elevation: 0.0,
         child: Text("Sign In", style: TextStyle(color: Colors.white70)),

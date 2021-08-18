@@ -39,13 +39,6 @@ class GetDistricts {
   }
 }
 
-// class Cate32 extends StatefulWidget {
-//   final cate;
-//   final cateId;
-//   const Cate32({String this.cate, String this.cateId});
-//   @override
-//   Cate32State createState() => new Cate32State();
-// }
 class DistrictsListView extends StatefulWidget {
   final provinceID;
   final phoneNumber;
