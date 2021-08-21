@@ -110,7 +110,7 @@ class _CategoryPageState extends State<CategoryPage> {
             ListTile(
               contentPadding: EdgeInsets.all(10),
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201217151121-3ADdArjHmO.png'),
+                  'https://salon.enie.co.th/images/products/500/20201217151121-3ADdArjHmO.png'),
               title: Text('น้ำยายืด/ดัด', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {

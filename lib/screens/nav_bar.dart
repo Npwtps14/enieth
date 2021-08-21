@@ -1,4 +1,4 @@
-import 'package:enie_production/screens/cart_screen.dart';
+import 'package:enie_production/screens/chat_screen.dart';
 import 'package:enie_production/screens/home_screen.dart';
 import 'package:enie_production/screens/promotion.dart';
 import 'package:enie_production/screens/user_screen.dart';
@@ -16,7 +16,6 @@ class NavBar extends StatefulWidget {
   const NavBar({this.username});
 
   @override
-
   NavBarState createState() => NavBarState();
 }
 
@@ -37,13 +36,13 @@ class NavBarState extends State<NavBar> {
     }
   }
 
-
   int selectedIndex = 0;
   final widgetOptions = [
     new HomePage(),
     new CategoryPage(),
     new PromotionPage(),
-    new UsersPage()
+    new UsersPage(),
+    new ChatPage()
   ];
 
   @override
@@ -78,6 +77,10 @@ class NavBarState extends State<NavBar> {
                 // ignore: deprecated_member_use
                 icon: LineIcon(LineIcons.userCircle),
                 title: Text('Profile')),
+            BottomNavigationBarItem(
+                // ignore: deprecated_member_use
+                icon: LineIcon(LineIcons.facebookMessenger),
+                title: Text('Chat')),
           ],
           currentIndex: selectedIndex,
           unselectedItemColor: Colors.black,
@@ -88,6 +91,7 @@ class NavBarState extends State<NavBar> {
       ),
     );
   }
+
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;

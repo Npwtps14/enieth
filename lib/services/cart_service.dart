@@ -5,7 +5,7 @@ import 'package:chopper/chopper.dart';
 part 'cart_service.chopper.dart';
 
 // @ChopperApi(baseUrl: "/notes")
-@ChopperApi(baseUrl: "/carts")
+@ChopperApi(baseUrl: "/salon-carts")
 abstract class CartsService extends ChopperService {
   static CartsService create([ChopperClient client]) => _$CartsService(client);
 

@@ -42,7 +42,7 @@ class ProductDetailPageState extends State<GetItem> {
   // }
 
   Future postCartData() async {
-    final String pathUrl = 'https://app1.fantasy.co.th/carts';
+    final String pathUrl = 'https://app1.fantasy.co.th/salon-carts';
 
     dynamic cartData = {
       "user_id": "1",
