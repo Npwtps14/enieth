@@ -83,7 +83,7 @@ class Product {
       pdHot: json["pd_hot"] as int,
       pdHowToUse: json["pd_how_to_use"] ??= 'How to use will update soon',
       pdMainImage: json["pd_main_image"] ??=
-          'https://firebasestorage.googleapis.com/v0/b/enie-89c82.appspot.com/o/itemProduct%2Fimage-not-available.jpeg?alt=media&token=c652c858-2f61-47b0-8e54-60d077390ce5',
+          '20210517161104-oqWf2HDlmv.jpeg',
       pdMtStatus: json["pd_mt_status"] as int,
       pdNameEn: json["pd_name_en"] == null ? null : json["pd_name_en"],
       pdNameTh: json["pd_name_th"] as String,

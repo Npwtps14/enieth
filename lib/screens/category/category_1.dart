@@ -41,7 +41,7 @@ class Cate1State extends State<Cate1> {
         // ignore: unnecessary_brace_in_string_interps
         // 'https://api.enie.co.th/api/products'
         
-        .get('https://api.enie.co.th/api/products?categoryID=$id');
+        .get('https://app1.fantasy.co.th/products?product_category_id=$id&pd_status=1');
     if (response.statusCode == 200) {
       print('value ${response}');
       return (response.data as List).map((x) => Product.fromJson(x)).toList();

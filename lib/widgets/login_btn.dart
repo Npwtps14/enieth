@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 MaterialButton longButtons(String title, Function fun,
-    {color: const  Color(0xFF2E7D32), Color textColor: Colors.white}) {
+    {color: const Color(0xFF2E7D32), Color textColor: Colors.white}) {
   return MaterialButton(
     onPressed: fun,
     textColor: textColor,
@@ -11,6 +12,7 @@ MaterialButton longButtons(String title, Function fun,
       width: double.infinity,
       child: Text(
         title,
+        style: GoogleFonts.kanit(),
         textAlign: TextAlign.center,
       ),
     ),
@@ -21,9 +23,12 @@ MaterialButton longButtons(String title, Function fun,
   );
 }
 
-label(String title) => Text(title);
+label(String title) => Text(
+      title,
+      style: GoogleFonts.kanit(),
+    );
 
-InputDecoration buildInputDecoration(String hintText, IconData icon) {
+InputDecoration buildInputDecoration(String  , IconData icon) {
   return InputDecoration(
     prefixIcon: Icon(icon, color: HexColor('#36803a')),
     // hintText: hintText,

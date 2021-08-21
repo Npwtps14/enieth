@@ -42,7 +42,7 @@ class ProductDetailPageState extends State<GetItem> {
   // }
 
   Future postCartData() async {
-    final String pathUrl = 'https://app1.fantasy.co.th/carts';
+    final String pathUrl = 'https://app1.fantasy.co.th/salon-carts';
 
     dynamic cartData = {
       "user_id": "1",
@@ -51,7 +51,7 @@ class ProductDetailPageState extends State<GetItem> {
       "item_count": this._itemCount,
       "status": "1",
       "product_price": this.total,
-      "product_img": widget.itemImg
+      "product_img": 'https://office.enie.co.th/images/product/300/${widget.itemImg}'
     };
     var response = await dio.post(pathUrl,
         data: cartData,
@@ -127,7 +127,8 @@ class ProductDetailPageState extends State<GetItem> {
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Image.network(
-                            widget.itemImg,
+                            'https://office.enie.co.th/images/product/800/' +
+                                widget.itemImg,
                             fit: BoxFit.fitHeight,
                           ),
                         ),

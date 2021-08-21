@@ -1,10 +1,7 @@
 import 'package:enie_production/models/product.dart';
 import 'package:enie_production/screens/product_detail.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 
 import 'cart_screen.dart';
 
@@ -19,6 +16,7 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        // print('Img Url  '+'https://office.enie.co.th/images/product/800/'+product.pdMainImage);
         var itemDetail = new MaterialPageRoute(
             builder: (BuildContext contex) => GetItem(
                 itemId: product.id,
@@ -50,7 +48,7 @@ class ProductTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.network(
-                      product.pdMainImage,
+                     'https://office.enie.co.th/images/product/800/'+product.pdMainImage,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -60,8 +58,8 @@ class ProductTile extends StatelessWidget {
                           backgroundColor: Colors.white,
                           child: IconButton(
                             icon: product.isFavorite.value
-                                ? FaIcon(FontAwesomeIcons.solidHeart)
-                                : FaIcon(FontAwesomeIcons.heart),
+                                ? Icon(Icons.favorite_rounded)
+                                : Icon(Icons.favorite_border),
                             onPressed: () {
                               product.isFavorite.toggle();
                             },

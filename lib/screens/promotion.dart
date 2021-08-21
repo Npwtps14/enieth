@@ -18,10 +18,11 @@ class _PromotionPageState extends State<PromotionPage> {
 //        theme: ThemeData.light().copyWith(
 //          platform: _platform ?? Theme.of(context).platform,
 //        ),
+        debugShowCheckedModeBanner: false,
         home: DefaultTabController(
             length: 3,
             child: Scaffold(
-              appBar: AppBar(
+                appBar: AppBar(
                   backgroundColor: HexColor('#36803a'),
                   title: Text(''),
                   leading: GestureDetector(),
@@ -45,53 +46,52 @@ class _PromotionPageState extends State<PromotionPage> {
                     ),
                   ],
                 ),
-
                 body: SafeArea(
                     child: Column(children: <Widget>[
-              Container(
-                color: Colors.greenAccent,
-                height: MediaQuery.of(context).size.height /
-                    2.2, // Also Including Tab-bar height.
+                  Container(
+                    color: Colors.greenAccent,
+                    height: MediaQuery.of(context).size.height /
+                        2.2, // Also Including Tab-bar height.
 //                        child: Chewie(
 //                          controller: _chewieController,
 //                        ),
-              ),
-              PreferredSize(
-                preferredSize: Size.fromHeight(50.0),
-                child: TabBar(
-                  labelColor: Colors.black,
-                  tabs: [
-                    Tab(
-                      text: 'Promotion 1',
+                  ),
+                  PreferredSize(
+                    preferredSize: Size.fromHeight(50.0),
+                    child: TabBar(
+                      labelColor: Colors.black,
+                      tabs: [
+                        Tab(
+                          text: 'Promotion 1',
+                        ),
+                        Tab(
+                          text: 'Promotion 2',
+                        ),
+                        Tab(
+                          text: 'Promotion 3',
+                        )
+                      ], // list of tabs
                     ),
-                    Tab(
-                      text: 'Promotion 2',
+                  ),
+                  //TabBarView(children: [ImageList(),])
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        Container(
+                          color: Colors.deepOrange,
+                          child: Center(child: Text('1')),
+                        ),
+                        Container(
+                          color: Colors.red,
+                          child: Center(child: Text('2')),
+                        ),
+                        Container(
+                          color: Colors.yellowAccent,
+                          child: Center(child: Text('3')),
+                        ) // class name
+                      ],
                     ),
-                    Tab(
-                      text: 'Promotion 3',
-                    )
-                  ], // list of tabs
-                ),
-              ),
-              //TabBarView(children: [ImageList(),])
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    Container(
-                      color: Colors.deepOrange,
-                      child: Center(child: Text('1')),
-                    ),
-                    Container(
-                      color: Colors.red,
-                      child: Center(child: Text('2')),
-                    ),
-                    Container(
-                      color: Colors.yellowAccent,
-                      child: Center(child: Text('3')),
-                    ) // class name
-                  ],
-                ),
-              ),
-            ])))));
+                  ),
+                ])))));
   }
 }

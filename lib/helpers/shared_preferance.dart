@@ -12,10 +12,9 @@ class UserPreferences {
     prefs.setString("phone", user.phone);
     prefs.setString("type", user.type);
     prefs.setString("token", user.token);
-    prefs.setString("renewalToken", user.renewalToken);
+
 
     print("object prefere");
-    print(user.renewalToken);
 
     return prefs.commit();
   }
@@ -29,7 +28,6 @@ class UserPreferences {
     String phone = prefs.getString("phone");
     String type = prefs.getString("type");
     String token = prefs.getString("token");
-    String renewalToken = prefs.getString("renewalToken");
 
     return User(
         userId: userId,
@@ -37,8 +35,7 @@ class UserPreferences {
         email: email,
         phone: phone,
         type: type,
-        token: token,
-        renewalToken: renewalToken);
+        token: token);
   }
 
   void removeUser() async {
