@@ -94,6 +94,7 @@ SPEC CHECKSUMS:
   hexcolor: fdfb9c4258ad96e949c2dbcdf790a62194b8aa89
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
+
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
