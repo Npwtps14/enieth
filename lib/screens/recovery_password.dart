@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:enie_production/screens/address/provinces_screen.dart';
 import 'package:enie_production/screens/login_screen.dart';
-import 'package:enie_production/services/auth_service.dart';
 import 'package:enie_production/widgets/login_btn.dart';
 import 'package:enie_production/widgets/register_success.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'cart_screen.dart';
-
 class RecoveryPassword extends StatefulWidget {   
   @override
   _RegisterState createState() => _RegisterState();
@@ -63,15 +58,7 @@ class _RegisterState extends State {
   @override
   Widget build(BuildContext context) {
     TextEditingController usernameController = TextEditingController();
-    TextEditingController passwordContorller = TextEditingController();
-    TextEditingController nameController = TextEditingController();
-    TextEditingController lastNameController = TextEditingController();
-    TextEditingController storeNameController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController addressController = TextEditingController();
-    TextEditingController villageController = TextEditingController();
-    TextEditingController alleyController = TextEditingController();
-    TextEditingController roadController = TextEditingController();
+    
 
     void hideKeyboard(BuildContext context) {
       FocusScopeNode currentFocus = FocusScope.of(context);
