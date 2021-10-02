@@ -94,7 +94,7 @@ class SubDistrictListView extends StatefulWidget {
 class SubDistrict extends State<SubDistrictListView> {
   Future<List<GetSubDistrict>> _getSubDistrictList() async {
     var url = Uri.parse(
-        'https://app1.fantasy.co.th/sub-districts?district_id=${widget.districtID}');
+        'https://mf-salon-api.herokuapp.com/sub-districts?district_id=${widget.districtID}');
     var response = await http.get(url);
 
     if (response.statusCode == 200) {

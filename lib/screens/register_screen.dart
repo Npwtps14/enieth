@@ -81,7 +81,7 @@ class _RegisterState extends State<Register> {
     String base64Img = base64Encode(image);
 
     // var x = base64Img.s;
-    final String pathUrl = 'https://app1.fantasy.co.th/salons';
+    final String pathUrl = 'https://mf-salon-api.herokuapp.com/salons';
     var userData = {
       "salon_main_picture": base64Img.trim().toString(),
       "salon_id_card": null,

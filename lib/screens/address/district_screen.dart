@@ -86,7 +86,7 @@ class DistrictsListView extends StatefulWidget {
 class Districts extends State<DistrictsListView> {
   Future<List<GetDistricts>> _getDistrictsList() async {
     var url = Uri.parse(
-        'https://app1.fantasy.co.th/districts?province_id=${widget.provinceID}');
+        'https://mf-salon-api.herokuapp.com/districts?province_id=${widget.provinceID}');
     var response = await http.get(url);
     // print('จังหวัด' + widget.provinceID.toString());
     if (response.statusCode == 200) {

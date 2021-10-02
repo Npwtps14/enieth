@@ -90,7 +90,7 @@ class ProvincesListView extends StatefulWidget {
 
 class Provinces extends State<ProvincesListView> {
   Future<List<GetProvinces>> _getProvinceList() async {
-    var url = Uri.parse('https://app1.fantasy.co.th/provinces');
+    var url = Uri.parse('https://mf-salon-api.herokuapp.com/provinces');
     var response = await http.get(url);
     if (response.statusCode == 200) {
       final jsonItems = json.decode(response.body).cast<Map<String, dynamic>>();

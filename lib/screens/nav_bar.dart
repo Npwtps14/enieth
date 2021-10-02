@@ -1,6 +1,7 @@
 import 'package:enie_production/screens/chat_screen.dart';
 import 'package:enie_production/screens/home_screen.dart';
 import 'package:enie_production/screens/promotion.dart';
+import 'package:enie_production/screens/user_menu.dart';
 import 'package:enie_production/screens/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
@@ -41,7 +42,7 @@ class NavBarState extends State<NavBar> {
     new HomePage(),
     new CategoryPage(),
     new PromotionPage(),
-    new UsersPage(),
+    new Profile(),
     new ChatPage()
   ];
 

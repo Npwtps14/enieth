@@ -153,7 +153,7 @@ class _LoginState extends State<Login> {
     var jsonResponse = null;
     var userID = username;
     final response = await http.post(
-      Uri.parse("https://app1.fantasy.co.th/authentication"),
+      Uri.parse("https://mf-salon-api.herokuapp.com/authentication"),
       body: data,
     );
     if (response.statusCode == 401) {

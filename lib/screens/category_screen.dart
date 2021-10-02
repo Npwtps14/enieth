@@ -110,7 +110,7 @@ class _CategoryPageState extends State<CategoryPage> {
             ListTile(
               contentPadding: EdgeInsets.all(10),
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201217151121-3ADdArjHmO.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('น้ำยายืด/ดัด', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -125,7 +125,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20200604141350-Pmjg5e99Qe.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('เคมี', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -142,7 +142,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201223154409-1LNthwRY0M.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('บำรุง/ทรีทเม้น', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -159,7 +159,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201226165139-01LbQZTxKa.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('แชมพู&ครีมนวด', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -176,7 +176,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201222094530-7lvCCUYufz.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('จัดแต่งทรง', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -193,7 +193,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201219171329-H6EYQJ2fkl.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('สี Fantasy', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -210,7 +210,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201218154812-HSg5VFKmry.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('สี Enie', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -227,7 +227,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201221113828-IAkkNN9Ah2.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('สีแฟชั่น', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -244,7 +244,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201223113713-n5LPLifq1k.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title:
                   Text('สีเคลือบเจล (Megic Color)', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
@@ -262,7 +262,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20210116094655-2SXY86BXwJ.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('ไฮโดรเจน (Hydrogen)', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -279,7 +279,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20200810101957-BKgENXEZMg.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('เครื่องใช้ไฟฟ้า (Electrical)',
                   style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
@@ -297,7 +297,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20210108113500-EOIhT6o26P.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('แกนดัดผม', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -314,7 +314,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20210216140406-4MZYVSzDJ9.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('อะเซทเซอรี่', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -331,7 +331,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201226151113-UqGAJupRBP.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('กิ๊ฟหนีบผม', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -348,7 +348,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201123132206-P0tf0qXlwV.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('หวี-แปรงไดร์', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -365,7 +365,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20200622141147-MHVJ2jpOeX.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('ถ้วยขวด-แปรงเคมี', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -382,7 +382,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20200722115019-dcIqUJtMb3.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('กระดาษ', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -399,7 +399,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20201219151959-xMFRuo98Jn.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('เอี๊ยม-ผ้าคลุม', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -416,7 +416,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20200811140637-1vaO8owQfA.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('กรรไกร (Scissors)', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
@@ -433,7 +433,7 @@ class _CategoryPageState extends State<CategoryPage> {
               horizontalTitleGap: 0,
               minVerticalPadding: 5,
               leading: Image.network(
-                  'https://salon.fantasy.co.th/images/products/500/20200623110718-tTnByd3tB2.png'),
+                  'https://i1.wp.com/www.enie.co.th/wp-content/uploads/2021/09/hair-dye.png?resize=300%2C300&ssl=1'),
               title: Text('รถเข็น', style: GoogleFonts.kanit()),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {

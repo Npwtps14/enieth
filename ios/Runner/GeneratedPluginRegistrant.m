@@ -4,6 +4,12 @@
 
 #import "GeneratedPluginRegistrant.h"
 
+#if __has_include(<animated_theme_switcher/AnimatedThemeSwitcherPlugin.h>)
+#import <animated_theme_switcher/AnimatedThemeSwitcherPlugin.h>
+#else
+@import animated_theme_switcher;
+#endif
+
 #if __has_include(<file_picker/FilePickerPlugin.h>)
 #import <file_picker/FilePickerPlugin.h>
 #else
@@ -49,6 +55,7 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
+  [AnimatedThemeSwitcherPlugin registerWithRegistrar:[registry registrarForPlugin:@"AnimatedThemeSwitcherPlugin"]];
   [FilePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FilePickerPlugin"]];
   [HexcolorPlugin registerWithRegistrar:[registry registrarForPlugin:@"HexcolorPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
